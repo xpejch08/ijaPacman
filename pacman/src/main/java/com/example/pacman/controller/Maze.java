@@ -21,6 +21,13 @@ public class Maze implements MazeInterface{
     public  List<MazeObject> Objects = new ArrayList<>();
 
     public static ArrayList <Field> fields = new ArrayList<>();
+
+    public int getRowsG(){
+        return rowsG;
+    }
+    public int getColumnG(){
+        return rowsG;
+    }
     @Override
     public void startReading(int rows, int cols){
         mazeTmp.Fields.clear();

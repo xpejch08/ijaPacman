@@ -9,10 +9,12 @@ public class Grid extends GridPane {
 
     //todo dynamic gridsize through constructor
     private static final int CELL_SIZE = 50;
-    private static final int NUM_ROWS = 5;
-    private static final int NUM_COLS = 5;
+    public int NUM_ROWS;
+    public int NUM_COLS;
 
     public Grid(Maze maze) {
+        NUM_ROWS = maze.getRowsG();
+        NUM_COLS = maze.getColumnG();
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
                 if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
