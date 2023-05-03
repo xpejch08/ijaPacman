@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        PacmanView pacman = null;
 
         int NUM_ROWS;
         int NUM_COLS;
@@ -33,10 +33,9 @@ public class HelloApplication extends Application {
 
         double height = grid.getY();
         double width = grid.getX();
-        Scene scene = new Scene(fxmlLoader.load(), width , height);
+        Scene scene = new Scene(groupObject, width , height);
 
         // add the grid to the scene
-        scene.setRoot(grid);
 
         stage.setTitle("Hello!");
         stage.setScene(scene);

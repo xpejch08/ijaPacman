@@ -4,10 +4,12 @@ public class MazeObject {
 
     public int rows;
     public int cols;
+    public int lives = 3;
     public boolean isPacman = false;
     public boolean isGhost = false;
     public boolean isKey = false;
     public boolean isEnd =  false;
+    public boolean hasKey = false;
     public Maze maze;
 
     public MazeObject(Maze maze, int rows, int cols){
@@ -30,15 +32,40 @@ public class MazeObject {
             if(!next.isEmpty()) {
                 if (this.isPacman) {
                     if (tmp.isGhost) {
-                        // respawn
+                        for (int row = 0; row < maze.getRowsG() + 2; row++) {
+                            for (int col = 0; col < maze.getColumnG() + 2; col++) {
+                                if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
+                                    Field fieldSwap = maze.getField(row, col);
+                                    this.rows = fieldSwap.rows;
+                                    this.cols = fieldSwap.cols;
+                                }
+                            }
+                        }
                     }
                     else if (tmp.isKey) {
+                        this.rows = next.rows;
+                        this.cols = next.cols;
+                        this.hasKey = true;
                         next.removeOfField(tmp);
                     }
                     else if (tmp.isEnd) {
+                        if(this.hasKey){
+                            //quit game
+                        }
+                        else{
+                            this.rows = next.rows;
+                            this.cols = next.cols;
+                        }
                         // ask if he has a key, if yes end game
                     }
                     else{
+                        return false;
+                    }
+                }
+                if(this.isGhost){
+                    if(next.getObject().isPacman){
+                        next.getObject().lifeDown();
+                    }else{
                         return false;
                     }
                 }
@@ -47,14 +74,25 @@ public class MazeObject {
             }
             else{
                 // next field is empty, just move
-
+                if(dir == FieldInterface.Direction.L){
+                    this.cols--;
+                }
+                else if(dir == FieldInterface.Direction.R){
+                    this.cols++;
+                }
+                else if(dir == FieldInterface.Direction.U){
+                    this.rows--;
+                }
+                if(dir == FieldInterface.Direction.D){
+                    this.rows++;
+                }
+                return true;
             }
         }
         //cant move
         else{
             return false;
         }
-        return false;
     }
 
     public boolean setPacman() {
@@ -63,6 +101,10 @@ public class MazeObject {
             return true;
         }else
             return false;
+    }
+
+    public void lifeDown(){
+        lives--;
     }
 
     public boolean setGhost(){

@@ -3,6 +3,7 @@ package com.example.pacman.view;
 
 import com.example.pacman.controller.FieldInterface;
 import com.example.pacman.controller.MazeObject;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.Scene;
@@ -15,7 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 
 
-public class PacmanView {
+public class PacmanView extends Node {
 
     private MazeObject pac = null;
     public Group thisgroup;
@@ -41,6 +42,14 @@ public class PacmanView {
 
     }
 
+    public void paint( MazeObject obj){
+        gc.clearRect(0,0,canvas.getHeight(),canvas.getWidth());
+        gc.fillRect(obj.cols * CELL_SIZE, obj.rows * CELL_SIZE , CELL_SIZE, CELL_SIZE);
+
+    }
+    public Canvas getNode(){
+        return canvas;
+    }
     private void handleKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.LEFT) {
             this.pac.move(FieldInterface.Direction.L);
