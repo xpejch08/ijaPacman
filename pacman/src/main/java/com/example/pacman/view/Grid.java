@@ -13,8 +13,8 @@ public class Grid extends GridPane {
     public int NUM_COLS;
 
     public Grid(Maze maze) {
-        NUM_ROWS = maze.getRowsG();
-        NUM_COLS = maze.getColumnG();
+        NUM_ROWS = maze.getRowsG() + 2;
+        NUM_COLS = maze.getColumnG() + 2;
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
                 if(maze.getField(row, col) != null && maze.getField(row, col).isStart){

@@ -38,6 +38,9 @@ public class MazeObject {
                     else if (tmp.isEnd) {
                         // ask if he has a key, if yes end game
                     }
+                    else{
+                        return false;
+                    }
                 }
                 //ghost movement
                 return true;
