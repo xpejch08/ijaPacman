@@ -1,5 +1,6 @@
 package com.example.pacman;
-
+import com.example.pacman.controller.MazeObject;
+import com.example.pacman.view.PacmanView;
 import com.example.pacman.controller.Maze;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,6 +15,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+
+
         // create a new instance of the Grid class
         Grid grid = new Grid();
         double height = grid.getY();
@@ -30,6 +33,9 @@ public class HelloApplication extends Application {
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
+
+        MazeObject mypac = new MazeObject(maze, 1, 1);
+        PacmanView pacman = new PacmanView(mypac);
         stage.show();
     }
 
