@@ -6,9 +6,10 @@ import javafx.scene.shape.Rectangle;
 
 public class Grid extends GridPane {
 
+    //todo dynamic gridsize through constructor
     private static final int CELL_SIZE = 50;
-    private static final int NUM_ROWS = 10;
-    private static final int NUM_COLS = 10;
+    private static final int NUM_ROWS = 11;
+    private static final int NUM_COLS = 11;
 
     public Grid() {
         for (int row = 0; row < NUM_ROWS; row++) {
@@ -18,5 +19,12 @@ public class Grid extends GridPane {
                 add(cell, col, row);
             }
         }
+    }
+
+    public int getY(){
+        return CELL_SIZE * NUM_ROWS + 10;
+    }
+    public int getX(){
+        return CELL_SIZE * NUM_COLS + 10;
     }
 }
