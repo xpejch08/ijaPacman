@@ -65,7 +65,6 @@ public class Maze implements MazeInterface{
 
     @Override
     public boolean processLine(String line){
-        process++;
         iterationRows++;
         if(iterationRows > rowsG){
             flag = true;

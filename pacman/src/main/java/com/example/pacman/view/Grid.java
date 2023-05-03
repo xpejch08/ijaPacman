@@ -25,7 +25,7 @@ public class Grid extends GridPane {
                 else if(maze.getField(row, col) != null
                         && maze.getField(row, col).getObject() != null
                         && maze.getField(row, col).getObject().isGhost){
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.GREEN);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }

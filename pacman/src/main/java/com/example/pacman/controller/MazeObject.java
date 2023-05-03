@@ -36,6 +36,7 @@ public class MazeObject {
                             for (int col = 0; col < maze.getColumnG() + 2; col++) {
                                 if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
                                     Field fieldSwap = maze.getField(row, col);
+                                    this.getField().removeOfField(this);
                                     this.rows = fieldSwap.rows;
                                     this.cols = fieldSwap.cols;
                                 }
@@ -65,6 +66,7 @@ public class MazeObject {
                 if(this.isGhost){
                     if(next.getObject().isPacman){
                         next.getObject().lifeDown();
+
                     }else{
                         return false;
                     }
@@ -72,7 +74,9 @@ public class MazeObject {
                 //ghost movement
                 return true;
             }
-            else{
+                next.insertOnField(this);
+                this.getField().removeOfField(this);
+                this.getField().isEmpty = true;
                 // next field is empty, just move
                 if(dir == FieldInterface.Direction.L){
                     this.cols--;
@@ -86,8 +90,8 @@ public class MazeObject {
                 if(dir == FieldInterface.Direction.D){
                     this.rows++;
                 }
+
                 return true;
-            }
         }
         //cant move
         else{

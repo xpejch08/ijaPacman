@@ -1,5 +1,6 @@
 package com.example.pacman;
 import com.example.pacman.controller.MazeObject;
+import com.example.pacman.view.Ghost;
 import com.example.pacman.view.PacmanView;
 import com.example.pacman.controller.Maze;
 import javafx.application.Application;
@@ -22,6 +23,10 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         PacmanView pacman = null;
+        Ghost ghost1 = null;
+        Ghost ghost2 = null;
+        Ghost ghost3 = null;
+        Ghost ghost4 = null;
 
         int NUM_ROWS;
         int NUM_COLS;
@@ -42,6 +47,7 @@ public class HelloApplication extends Application {
         NUM_ROWS = maze.getRowsG()+2;
         NUM_COLS = maze.getColumnG()+2;
         MazeObject tmp = null;
+        int ghostCounter = 0;
 
         for (int row =0; row<NUM_ROWS; row++){
             for(int col = 0; col<NUM_COLS; col++ ){
@@ -50,6 +56,24 @@ public class HelloApplication extends Application {
                     if (tmp.isPacman) {
                         pacman = new PacmanView(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
 
+                    }
+                    if(tmp.isGhost){
+                        if(ghostCounter == 0) {
+                            ghostCounter++;
+                            ghost1 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
+                        }
+                        else if(ghostCounter == 1) {
+                            ghostCounter++;
+                            ghost2 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
+                        }
+                        else if(ghostCounter == 2) {
+                            ghostCounter++;
+                            ghost3 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
+                        }
+                        else if(ghostCounter == 3) {
+                            ghostCounter++;
+                            ghost4 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
+                        }
                     }
                 }
             }
