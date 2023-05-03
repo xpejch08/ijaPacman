@@ -17,15 +17,13 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
 
-        // create a new instance of the Grid class
-        Grid grid = new Grid();
-        double height = grid.getY();
-        double width = grid.getX();
 
         Maze maze = new Maze();
         maze.readSource();
+        Grid grid = new Grid(maze);
 
-
+        double height = grid.getY();
+        double width = grid.getX();
         Scene scene = new Scene(fxmlLoader.load(), width , height);
 
         // add the grid to the scene

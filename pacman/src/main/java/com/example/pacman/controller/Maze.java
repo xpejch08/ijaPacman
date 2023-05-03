@@ -60,10 +60,6 @@ public class Maze implements MazeInterface{
     public boolean processLine(String line){
         process++;
         iterationRows++;
-        if(line.length() != 3){
-            flag = true;
-            return false;
-        }
         if(iterationRows > rowsG){
             flag = true;
             return false;
@@ -83,6 +79,7 @@ public class Maze implements MazeInterface{
                                 MazeObject pacman = new MazeObject(mazeTmp, iterationRows, stringIndex+1);
                                 pacman.setPacman();
                                 field.setPath();
+                                field.setStart();
                                 field.Pacman = pacman;
                                 field.insertInMaze(iterationRows, stringIndex + 1);
                                 //pacman.insertInObjectArray(iterationRows, stringIndex+1);
