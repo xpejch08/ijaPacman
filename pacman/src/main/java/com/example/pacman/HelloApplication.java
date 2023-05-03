@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
 
         MazeObject mypac = new MazeObject(maze, 1, 1);
-        PacmanView pacman = new PacmanView(mypac);
+        PacmanView pacman = new PacmanView(mypac, scene);
         stage.show();
     }
 

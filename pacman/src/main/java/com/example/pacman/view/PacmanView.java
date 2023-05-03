@@ -5,56 +5,29 @@ import com.example.pacman.controller.FieldInterface;
 import com.example.pacman.controller.MazeObject;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.Scene;
 
-import java.awt.event.KeyListener;
 
-import static java.awt.event.KeyEvent.*;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-import static javafx.scene.input.KeyCode.*;
-
-    public class PacmanView implements KeyListener {
+public class PacmanView {
 
     private MazeObject pac = null;
-    public PacmanView(MazeObject obj){
+
+    public PacmanView(MazeObject obj, Scene scene){
         pac = obj;
-        addKeyListener(this);
+        scene.setOnKeyPressed(this::handleKeyPress);
     }
 
-        @Override
-        public void keyPressed(java.awt.event.KeyEvent evt) {
-
-
-        int key = evt.getKeyCode();  // Keyboard code for the pressed key.
-
-        if (key == VK_LEFT) {
-
+    private void handleKeyPress(KeyEvent event) {
+        if (event.getCode() == KeyCode.LEFT) {
             this.pac.move(FieldInterface.Direction.L);
             System.out.print("GfG1");
-        }
-        else if (key == VK_RIGHT) {
+        } else if (event.getCode() == KeyCode.RIGHT) {
             this.pac.move(FieldInterface.Direction.R);
-        }
-        else if (key == VK_UP) {
+        } else if (event.getCode() == KeyCode.UP) {
             this.pac.move(FieldInterface.Direction.U);
-        }
-        else if (key == VK_DOWN) {
+        } else if (event.getCode() == KeyCode.DOWN) {
             this.pac.move(FieldInterface.Direction.D);
         }
-
-    }  // end keyPressed()
-
-        @Override
-        public void keyTyped(java.awt.event.KeyEvent e) {
-
-        }
-
-
-
-
-
-        @Override
-        public void keyReleased(java.awt.event.KeyEvent e) {
-
-        }
-
     }
+
+}
