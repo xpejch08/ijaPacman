@@ -26,8 +26,7 @@ public class Menu {
     private MazeObject pac;
     Text lives = new Text();
     Text steps = new Text();
-
-
+    Grid grid;
     Text diff = new Text();
     Rectangle r;
     Group menuGroup;
@@ -51,7 +50,9 @@ public class Menu {
     }
 
 
-    public void titlescreen(Stage primaryStage, Scene gamescreen){
+    public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid){
+        this.grid = grid;
+
         VBox layout0 = new VBox();
         VBox layout = new VBox();
         VBox layout2 = new VBox();
@@ -65,7 +66,8 @@ public class Menu {
         Scene scene = new Scene(layout, 300, 300);
         Scene scene2 = new Scene(layout2, 300, 300);
 
-        Label label0 = new Label("Welcome!\nWould you like to play or watch a replay?");
+        Label label0 = new Label("Welcome!\nWould you like to play");
+        Label label01 = new Label("or watch a replay?");
         Label label1 = new Label("Choose the map:");
         Label label2 = new Label("Choose difficulty (ghost speed):");
         //WELCOME SCREEN BUTTONS
@@ -76,9 +78,24 @@ public class Menu {
             log.clearLogFolder();
 
         });
-        Button buttonwatch = new Button("WATCH");
+        Button buttonwatch = new Button(">>");
         buttonwatch.setOnAction(e -> {
-            primaryStage.setScene(scene2);
+
+            for(int i=1; i< maze.logFilesCount; i++) {
+                maze.readSourceLog(i);
+                this.grid = new Grid(maze);
+                primaryStage.setScene(gamescreen);
+            }
+
+
+        });
+        Button buttonwatch2 = new Button("<<");
+        buttonwatch2.setOnAction(e -> {
+            primaryStage.setScene(gamescreen);
+
+            maze.readSourceLog(5);
+
+
 
         });
 
@@ -131,7 +148,7 @@ public class Menu {
 
         });
 
-        layout0.getChildren().addAll(label0, buttonplay, buttonwatch);
+        layout0.getChildren().addAll(label0, buttonplay,label01, buttonwatch,buttonwatch2);
         layout.getChildren().addAll(label1, buttonmap1,buttonmap2,buttonmap3);
         layout2.getChildren().addAll(label2, buttonspeed1, buttonspeed2, buttonspeed3);
 
