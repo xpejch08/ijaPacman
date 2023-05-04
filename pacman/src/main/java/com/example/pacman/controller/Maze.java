@@ -20,10 +20,14 @@ public class Maze implements MazeInterface{
     Maze mazeTmp = this;
     Field startField;
     MazeObject PacMan;
+
+    public PacmanView pac;
     public List <MazeObject> Ghosts = new ArrayList<>();
+
+    public List <Ghost> GhostViews = new ArrayList<>();
     public int ghostCounter = 0;
     MazeObject tmp;
-    public int diff =1;
+    public int diff;
 
     public  List<Field> Fields = new ArrayList<>();
     public  List<MazeObject> Objects = new ArrayList<>();
@@ -256,6 +260,12 @@ public class Maze implements MazeInterface{
     }
     public void addField(Field field) {
         Fields.add(field);
+    }
+    public void startGhosts(){
+
+        for (int j =0; j<this.ghostCounter; j++){
+            this.GhostViews.get(j).startTimeline();
+        }
     }
 
 }

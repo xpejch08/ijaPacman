@@ -116,9 +116,7 @@ public class MazeObject {
     }
 
     public void lifeDown(){
-        if(this.canloose == true) {
             lives--;
-        }
     }
 
     public int getLives(){

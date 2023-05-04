@@ -54,9 +54,11 @@ public class HelloApplication extends Application {
         MazeObject tmp = null;
 
         pacman = new PacmanView(maze.getPacMan(NUM_ROWS, NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
+        maze.pac = pacman;
         maze.getGhosts(NUM_ROWS, NUM_COLS);
         for (int j =0; j<maze.ghostCounter; j++){
             Ghost i = new Ghost(maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
+            maze.GhostViews.add(i);
         }
 
         Circle sceneCircle = new Circle(100, 60, 40, Color.DARKORANGE);
