@@ -23,6 +23,7 @@ public class Maze implements MazeInterface{
     public List <MazeObject> Ghosts = new ArrayList<>();
     public int ghostCounter = 0;
     MazeObject tmp;
+    public int diff =1;
 
     public  List<Field> Fields = new ArrayList<>();
     public  List<MazeObject> Objects = new ArrayList<>();

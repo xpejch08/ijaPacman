@@ -35,7 +35,7 @@ public class Grid extends GridPane {
                     add(cell, col, row);
                 }
                 else if(maze.getField(row, col) != null && !maze.getField(row, col).isPath && !maze.getField(row, col).isStart){
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.RED);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.GREY);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }

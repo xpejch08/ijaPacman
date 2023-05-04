@@ -7,6 +7,8 @@ public class MazeObject {
     public int rows;
     public int cols;
     public int lives = 3;
+
+    public int steps = 0;
     public boolean isPacman = false;
     public boolean isGhost = false;
     public boolean isKey = false;
@@ -33,8 +35,10 @@ public class MazeObject {
         if (canMove(dir)) {
             if(!next.isEmpty()) {
                 if (this.isPacman) {
+
                     if (tmp.isGhost) {
                         this.respawn();
+
                     }
 
                     else if (tmp.isKey) {
@@ -68,6 +72,7 @@ public class MazeObject {
                 //ghost movement
                 return true;
             }
+                this.steps++;
                 next.insertOnField(this);
                 this.getField().removeOfField(this);
                 this.getField().isEmpty = true;
