@@ -1,5 +1,9 @@
 package com.example.pacman.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,6 +11,7 @@ import static com.example.pacman.controller.MazeObjectInterface.maze;
 
 public class Log {
 
+    private Timeline timeline;
     private Maze m_maze;
     private int m_rows;
     private int m_cols;
@@ -19,7 +24,30 @@ public class Log {
             m_cols = cols;
     }
 
+    public void clearLogFolder() {
+        File logFolder = new File("log");
+        if (logFolder.exists() && logFolder.isDirectory()) {
+            File[] logFiles = logFolder.listFiles();
+            for (File logFile : logFiles) {
+                if (logFile.isFile()) {
+                    logFile.delete();
+                }
+            }
+        }
+    }
+    public void startTimeline(){
+        if(m_maze.diff == 1) {
+            timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> createLog()));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        }else{
+            timeline = new Timeline(new KeyFrame(Duration.seconds(m_maze.diff), event -> createLog()));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        }
+    }
     public void createLog() {
+
         try {
             File logFolder = new File("log");
             if (!logFolder.exists()) {
