@@ -1,4 +1,5 @@
 package com.example.pacman;
+import com.example.pacman.controller.Log;
 import com.example.pacman.controller.MazeObject;
 import com.example.pacman.view.*;
 import com.example.pacman.controller.Maze;
@@ -36,6 +37,8 @@ public class HelloApplication extends Application {
         //Group newgroup = new Group();
 
         maze.readSource();
+        Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+        log.createLog();
         Grid grid = new Grid(maze);
 
         double height = grid.getY();
