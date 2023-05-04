@@ -217,8 +217,39 @@ public class Maze implements MazeInterface{
     @Override
     public boolean readSource() {
         boolean firstLineFlag = false;
+        String maze = "maze1.txt";
         try{
             File mazeSource = new File("../pacman/src/mazes/maze1.txt");
+            //for(String fileNames : mazeSource.list()) System.out.println(fileNames);
+            Scanner reader = new Scanner(mazeSource);
+            while (reader.hasNextLine()){
+                if(!firstLineFlag){
+                    firstLineFlag = true;
+                    String data = reader.nextLine();
+                    String[] parts = data.split(" ");
+                    int x = Integer.parseInt(parts[0]);
+                    int y = Integer.parseInt(parts[1]);
+                    this.startReading(x, y);
+                }
+                String data = reader.nextLine();
+                this.processLine(data);
+                System.out.println(data);
+            }
+            this.stopReading();
+            reader.close();
+            return true;
+        }catch (FileNotFoundException e){
+            System.out.println("Cant open file\n");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean readSourceLog() {
+        boolean firstLineFlag = false;
+        int log = 1;
+        try{
+            File mazeSource = new File("../pacman/log/" + log + ".txt");
             //for(String fileNames : mazeSource.list()) System.out.println(fileNames);
             Scanner reader = new Scanner(mazeSource);
             while (reader.hasNextLine()){
