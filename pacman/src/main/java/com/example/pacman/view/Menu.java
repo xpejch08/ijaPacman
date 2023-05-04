@@ -30,12 +30,13 @@ public class Menu {
     Rectangle r;
     Group menuGroup;
     Scene menuscene;
+    Maze maze;
 
     public Menu(Maze maze) {
 
         this.menuGroup = new Group();
         this.menuscene = new Scene(menuGroup, 400, 400);
-
+        this.maze = maze;
         Rectangle r = new Rectangle();
         r.setWidth(600);
         r.setHeight(45);
@@ -58,17 +59,47 @@ public class Menu {
         Label label1 = new Label("This is the First Scene");
         Label label2 = new Label("This is the Second Scene");
 
-        Button button = new Button("Forward");
-        button.setOnAction(e -> primaryStage.setScene(gamescreen));
+        Button buttonmap1 = new Button("Forward");
+        buttonmap1.setOnAction(e -> {
+            primaryStage.setScene(scene2);
 
-        Button button2 = new Button("Backwards");
-        button2.setOnAction(e -> primaryStage.setScene(scene));
+        });
+        Button buttonmap2 = new Button("Forward");
+        buttonmap2.setOnAction(e -> {
+            primaryStage.setScene(scene2);
 
-        TextField text = new TextField();
-        text.setMaxWidth(100);
+        });
+        Button buttonmap3 = new Button("Forward");
+        buttonmap3.setOnAction(e -> {
+            primaryStage.setScene(scene2);
 
-        layout.getChildren().addAll(label1, button);
-        layout2.getChildren().addAll(label2, button2, text);
+        });
+
+        Button buttonspeed1 = new Button("1");
+        buttonspeed1.setOnAction(e -> {
+            primaryStage.setScene(gamescreen);
+            maze.startGhosts();
+            maze.pac.startTimeline();
+
+        });
+        Button buttonspeed2 = new Button("2");
+        buttonspeed2.setOnAction(e -> {
+            primaryStage.setScene(gamescreen);
+            maze.startGhosts();
+            maze.pac.startTimeline();
+
+        });
+        Button buttonspeed3 = new Button("3");
+        buttonspeed3.setOnAction(e -> {
+            primaryStage.setScene(gamescreen);
+            maze.startGhosts();
+            maze.pac.startTimeline();
+
+        });
+
+
+        layout.getChildren().addAll(label1, buttonmap1,buttonmap2,buttonmap3);
+        layout2.getChildren().addAll(label2, buttonspeed1, buttonspeed2, buttonspeed3);
 
         primaryStage.setTitle("CodersLegacy");
         primaryStage.setScene(scene);

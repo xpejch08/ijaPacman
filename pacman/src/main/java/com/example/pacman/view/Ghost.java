@@ -43,7 +43,7 @@ public class Ghost extends Node {
         // Initialize the timeline with a 0.5 second duration and a function to move the Pacman
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> moveGhost()));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+
     }
 
     public void paint(MazeObject obj) {
@@ -78,5 +78,8 @@ public class Ghost extends Node {
         if (pac.move(dir)) {
             paint(pac);
         }
+    }
+    public void startTimeline(){
+        timeline.play();
     }
 }

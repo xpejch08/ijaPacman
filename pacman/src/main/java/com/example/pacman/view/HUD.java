@@ -54,7 +54,7 @@ public class HUD {
         timelineSteps.setCycleCount(Timeline.INDEFINITE);
         timelineSteps.play();
 
-        diff.setText("DIFFICULTY: "+pac.maze.diff);
+        diff.setText("SPEED: "+pac.maze.diff);
         diff.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         diff.setX(350);
         diff.setY(30);
