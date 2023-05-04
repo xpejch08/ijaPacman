@@ -43,10 +43,7 @@ public class Ghost extends Node {
 
         gc = canvas.getGraphicsContext2D();
 
-        File inputstream = new File("src/images/ghost.png");
-        Image image = new Image("file:src/images/ghost.png");
 
-        gc.drawImage(image,50,50);
         thisgroup.getChildren().add(canvas);
         this.paint(obj);
 
@@ -57,9 +54,9 @@ public class Ghost extends Node {
 
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
         Image image = new Image("file:src/images/ghost.png");
-        gc.drawImage(image,50,50);
+        gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
 
     public Canvas getNode() {

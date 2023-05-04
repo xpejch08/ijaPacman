@@ -5,6 +5,7 @@ import com.example.pacman.controller.MazeObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.Scene;
@@ -52,7 +53,8 @@ public class PacmanView extends Node {
 
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        Image image = new Image("file:src/images/pacman.png");
+        gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
 
     public Canvas getNode() {

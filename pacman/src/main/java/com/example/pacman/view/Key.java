@@ -51,9 +51,9 @@ public class Key {
 
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
-        Image image = new Image("file:src/images/ghost.png");
-        gc.drawImage(image,50,50);
+        //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        Image image = new Image("file:src/images/key.png");
+        gc.drawImage(image, obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
 
 }
