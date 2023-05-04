@@ -18,7 +18,48 @@ public class Grid extends GridPane {
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
                 if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.RED);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+                else if(maze.getField(row, col) != null
+                        && maze.getField(row, col).getObject() != null
+                        && maze.getField(row, col).getObject().isGhost){
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+                else if(maze.getField(row, col) != null && maze.getField(row, col).isPath && maze.getField(row, col).isEnd) {
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.ORANGERED);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+                else if(maze.getField(row, col) != null && maze.getField(row, col).isPath && maze.getField(row, col).Key != null) {
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.PURPLE);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+                else if(maze.getField(row, col) != null && maze.getField(row, col).isPath && !maze.getField(row, col).isStart) {
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+                else if(maze.getField(row, col) != null && !maze.getField(row, col).isPath && !maze.getField(row, col).isStart){
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.GREY);
+                    cell.setStroke(Color.BLACK);
+                    add(cell, col, row);
+                }
+            }
+        }
+    }
+
+    public void GridLogging(Maze maze) {
+        NUM_ROWS = maze.getRowsG() + 2;
+        NUM_COLS = maze.getColumnG() + 2;
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.YELLOW);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }
@@ -35,7 +76,7 @@ public class Grid extends GridPane {
                     add(cell, col, row);
                 }
                 else if(maze.getField(row, col) != null && maze.getField(row, col).isPath && maze.getField(row, col).Key != null) {
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.PURPLE);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.BLUE);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }

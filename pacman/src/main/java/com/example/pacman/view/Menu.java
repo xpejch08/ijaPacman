@@ -24,6 +24,8 @@ import static javafx.scene.paint.Color.BLACK;
 
 public class Menu {
     private MazeObject pac;
+
+    private int iterations = 1;
     Text lives = new Text();
     Text steps = new Text();
     Grid grid;
@@ -53,6 +55,7 @@ public class Menu {
     public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid,  Group grup){
         this.grid = grid;
         this.groupObject = grup;
+        Group logGroup = new Group();
         VBox layout0 = new VBox();
         VBox layout = new VBox();
         VBox layout2 = new VBox();
@@ -65,6 +68,7 @@ public class Menu {
         Scene scene0 = new Scene(layout0, 300, 300);
         Scene scene = new Scene(layout, 300, 300);
         Scene scene2 = new Scene(layout2, 300, 300);
+        Scene logScene = new Scene(logGroup,grid.getY(), grid.getX());
 
         Label label0 = new Label("Welcome!\nWould you like to play");
         Label label01 = new Label("or watch a replay?");
@@ -80,30 +84,53 @@ public class Menu {
         });
         Button buttonwatch = new Button(">>");
         buttonwatch.setOnAction(e -> {
-
-            for(int i=1; i< maze.logFilesCount; i++) {
-                maze.readSourceLog(i);
-                this.grid = new Grid(maze);
-                groupObject.getChildren().add(grid);
+            primaryStage.setScene(logScene);
+            maze.readSourceLog(1);
+            Grid gridLog = new Grid(maze);
+            gridLog.GridLogging(maze);
+            logGroup.getChildren().clear();
+            logGroup.getChildren().add(gridLog);
+            grid.toFront();
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> {
+                iterations++;
+                maze.readSourceLog(iterations);
+                Grid iter = new Grid(maze);
+                iter.GridLogging(maze);
+                logGroup.getChildren().clear();
+                logGroup.getChildren().add(iter);
                 grid.toFront();
-                primaryStage.setScene(gamescreen);
-            }
-
+            }));
+            timeline.setCycleCount(maze.logFilesCount - 1);
+            timeline.play();
 
         });
         Button buttonwatch2 = new Button("<<");
         buttonwatch2.setOnAction(e -> {
-            primaryStage.setScene(gamescreen);
-
-            maze.readSourceLog(5);
-            this.grid = new Grid(maze);
-            groupObject.getChildren().clear();
-            groupObject.getChildren().add(grid);
+            primaryStage.setScene(logScene);
+            //just to get logcount
+            maze.readSourceLog(1);
+            maze.readSourceLog(maze.logFilesCount);
+            Grid gridLog = new Grid(maze);
+            gridLog.GridLogging(maze);
+            logGroup.getChildren().clear();
+            logGroup.getChildren().add(gridLog);
             grid.toFront();
-            primaryStage.setScene(gamescreen);
-
-
+            iterations = maze.logFilesCount - 1;
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> {
+                    iterations--;
+                    maze.readSourceLog(iterations);
+                    Grid iter = new Grid(maze);
+                    iter.GridLogging(maze);
+                    logGroup.getChildren().clear();
+                    logGroup.getChildren().add(iter);
+                    grid.toFront();
+            }));
+            timeline.setCycleCount(maze.logFilesCount - 2);
+            timeline.play();
         });
+
 
 //FIRST SCREEN BUTTONS
         Button buttonmap1 = new Button("Labyrinth");
