@@ -18,14 +18,14 @@ public class Grid extends GridPane {
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
                 if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.RED);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }
                 else if(maze.getField(row, col) != null
                         && maze.getField(row, col).getObject() != null
                         && maze.getField(row, col).getObject().isGhost){
-                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.WHITE);
+                    Rectangle cell = new Rectangle(CELL_SIZE, CELL_SIZE, Color.PURPLE);
                     cell.setStroke(Color.BLACK);
                     add(cell, col, row);
                 }

@@ -43,7 +43,7 @@ public class HelloApplication extends Application {
         double height = grid.getY();
         double width = grid.getX();
         Scene scene = new Scene(groupObject, width , height);
-        menu.titlescreen(primaryStage, scene, grid);
+        menu.titlescreen(primaryStage, scene, grid, groupObject);
         // add the grid to the scene
         //stage.setTitle("Hello!");
         //stage.setScene(scene);

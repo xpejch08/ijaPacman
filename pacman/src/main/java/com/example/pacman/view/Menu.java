@@ -32,7 +32,7 @@ public class Menu {
     Group menuGroup;
     Scene menuscene;
     Maze maze;
-
+    Group groupObject;
 
     public Menu(Maze maze) {
 
@@ -50,9 +50,9 @@ public class Menu {
     }
 
 
-    public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid){
+    public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid,  Group grup){
         this.grid = grid;
-
+        this.groupObject = grup;
         VBox layout0 = new VBox();
         VBox layout = new VBox();
         VBox layout2 = new VBox();
@@ -84,6 +84,8 @@ public class Menu {
             for(int i=1; i< maze.logFilesCount; i++) {
                 maze.readSourceLog(i);
                 this.grid = new Grid(maze);
+                groupObject.getChildren().add(grid);
+                grid.toFront();
                 primaryStage.setScene(gamescreen);
             }
 
@@ -94,7 +96,11 @@ public class Menu {
             primaryStage.setScene(gamescreen);
 
             maze.readSourceLog(5);
-
+            this.grid = new Grid(maze);
+            groupObject.getChildren().clear();
+            groupObject.getChildren().add(grid);
+            grid.toFront();
+            primaryStage.setScene(gamescreen);
 
 
         });
@@ -152,7 +158,7 @@ public class Menu {
         layout.getChildren().addAll(label1, buttonmap1,buttonmap2,buttonmap3);
         layout2.getChildren().addAll(label2, buttonspeed1, buttonspeed2, buttonspeed3);
 
-        primaryStage.setTitle("CodersLegacy");
+        primaryStage.setTitle("Pac-Man");
         primaryStage.setScene(scene0);
         primaryStage.show();
 
