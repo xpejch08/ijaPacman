@@ -18,6 +18,8 @@ public class Maze implements MazeInterface{
     static int process = 1;
     static boolean flag = false;
 
+    public int logFilesCount;
+
     Maze mazeTmp = this;
     Field startField;
     MazeObject PacMan;
@@ -245,10 +247,14 @@ public class Maze implements MazeInterface{
         }
     }
 
-    public boolean readSourceLog() {
+    public boolean readSourceLog(int log) {
         boolean firstLineFlag = false;
-        int log = 1;
         try{
+            File logFolder = new File("../pacman/log");
+            if (logFolder.exists() && logFolder.isDirectory()) {
+                File[] logFiles = logFolder.listFiles();
+                logFilesCount = logFiles.length;
+            }
             File mazeSource = new File("../pacman/log/" + log + ".txt");
             //for(String fileNames : mazeSource.list()) System.out.println(fileNames);
             Scanner reader = new Scanner(mazeSource);
