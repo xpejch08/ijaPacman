@@ -43,8 +43,10 @@ public class MazeObject {
                     }
 
                     else if (tmp.isKey) {
-                        this.rows = next.rows;
-                        this.cols = next.cols;
+                        Field fieldSwap = next;
+                        this.getField().removeOfField(this);
+                        this.rows = fieldSwap.rows;
+                        this.cols = fieldSwap.cols;
                         this.hasKey = true;
                         System.out.println("HASKEY");
                         next.removeOfField(tmp);
