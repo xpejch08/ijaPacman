@@ -38,7 +38,6 @@ public class HelloApplication extends Application {
 
         maze.readSource();
         Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
-        log.createLog();
         Grid grid = new Grid(maze);
 
         double height = grid.getY();
@@ -46,7 +45,6 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(groupObject, width , height);
         menu.titlescreen(primaryStage, scene);
         // add the grid to the scene
-
         //stage.setTitle("Hello!");
         //stage.setScene(scene);
         NUM_ROWS = maze.getRowsG()+2;

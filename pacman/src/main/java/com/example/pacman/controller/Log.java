@@ -40,8 +40,8 @@ public class Log {
             timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> createLog()));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-        }else{
-            timeline = new Timeline(new KeyFrame(Duration.seconds(m_maze.diff), event -> createLog()));
+        }else {
+            timeline = new Timeline(new KeyFrame(Duration.seconds(m_maze.speed), event -> createLog()));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         }
@@ -80,6 +80,7 @@ public class Log {
                 }
                 writer.write(System.getProperty("line.separator"));
             }
+            writer.write(System.getProperty("line.separator"));
             logIteration++;
             writer.close();
         } catch (IOException e) {

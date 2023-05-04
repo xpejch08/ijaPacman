@@ -1,5 +1,6 @@
 package com.example.pacman.view;
 
+import com.example.pacman.controller.Log;
 import com.example.pacman.controller.Maze;
 import com.example.pacman.controller.MazeObject;
 import javafx.animation.KeyFrame;
@@ -25,6 +26,7 @@ public class Menu {
     private MazeObject pac;
     Text lives = new Text();
     Text steps = new Text();
+
 
     Text diff = new Text();
     Rectangle r;
@@ -70,6 +72,8 @@ public class Menu {
         Button buttonplay = new Button("PLAY");
         buttonplay.setOnAction(e -> {
             primaryStage.setScene(scene);
+            Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            log.clearLogFolder();
 
         });
         Button buttonwatch = new Button("WATCH");
@@ -102,6 +106,8 @@ public class Menu {
 
             maze.startGhosts();
             maze.pac.startTimeline();
+            Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            log.startTimeline();
 
         });
         Button buttonspeed2 = new Button("Normal");
@@ -110,6 +116,8 @@ public class Menu {
             maze.setSpeed(2);
             maze.startGhosts();
             maze.pac.startTimeline();
+            Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            log.startTimeline();
 
         });
         Button buttonspeed3 = new Button("BRRRRR");
@@ -118,6 +126,8 @@ public class Menu {
             maze.setSpeed(3);
             maze.startGhosts();
             maze.pac.startTimeline();
+            Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            log.startTimeline();
 
         });
 
