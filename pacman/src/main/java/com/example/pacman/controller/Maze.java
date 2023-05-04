@@ -1,6 +1,7 @@
 package com.example.pacman.controller;
 
 import com.example.pacman.view.Ghost;
+import com.example.pacman.view.HUD;
 import com.example.pacman.view.PacmanView;
 
 import java.io.File;
@@ -28,6 +29,7 @@ public class Maze implements MazeInterface{
     public int ghostCounter = 0;
     MazeObject tmp;
     public int diff;
+    public double speed;
 
     public  List<Field> Fields = new ArrayList<>();
     public  List<MazeObject> Objects = new ArrayList<>();
@@ -267,5 +269,17 @@ public class Maze implements MazeInterface{
             this.GhostViews.get(j).startTimeline();
         }
     }
+    public void setSpeed(int diff){
+        this.diff = diff;
 
+        if (diff == 1){
+            speed = 0.5;
+        }
+        if (diff == 2){
+            speed = 0.35;
+        }
+        if (diff == 3){
+            speed = 0.2;
+        }
+    }
 }

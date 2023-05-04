@@ -57,7 +57,7 @@ public class HelloApplication extends Application {
         maze.pac = pacman;
         maze.getGhosts(NUM_ROWS, NUM_COLS);
         for (int j =0; j<maze.ghostCounter; j++){
-            Ghost i = new Ghost(maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
+            Ghost i = new Ghost(maze,maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
             maze.GhostViews.add(i);
         }
 

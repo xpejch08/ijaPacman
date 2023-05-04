@@ -54,12 +54,14 @@ public class HUD {
         timelineSteps.setCycleCount(Timeline.INDEFINITE);
         timelineSteps.play();
 
-        diff.setText("SPEED: "+pac.maze.diff);
+        diff.setText("DIFFICULTY: "+pac.maze.diff);
         diff.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         diff.setX(350);
         diff.setY(30);
         group.getChildren().add(diff);
-
+        Timeline timelineDiff = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateDiff()));
+        timelineDiff.setCycleCount(Timeline.INDEFINITE);
+        timelineDiff.play();
 
 
     }
@@ -69,6 +71,9 @@ public class HUD {
     }
     public void updateSteps(){
         steps.setText("STEPS: "+pac.steps);
+    }
+    public void updateDiff(){
+        diff.setText("DIFFICULTY: "+pac.maze.diff);
     }
 
 

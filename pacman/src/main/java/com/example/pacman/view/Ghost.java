@@ -2,6 +2,7 @@ package com.example.pacman.view;
 
 import com.example.pacman.controller.FieldInterface;
 import com.example.pacman.controller.MazeObject;
+import com.example.pacman.controller.Maze;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
@@ -11,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.Group;
 import javafx.util.Duration;
+
 
 import java.util.Random;
 
@@ -23,14 +25,14 @@ public class Ghost extends Node {
     int CELL_SIZE = 50;
 
     Canvas canvas = new Canvas();
-
+    Maze maze;
     FieldInterface.Direction dir;
     private Timeline timeline;
 
-    public Ghost(MazeObject obj, Scene scene, Group group, int rows, int cols) {
+    public Ghost(Maze maze,MazeObject obj, Scene scene, Group group, int rows, int cols) {
         pac = obj;
         thisgroup = group;
-
+        this.maze = maze;
         canvas.setHeight(rows * CELL_SIZE);
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");
@@ -41,8 +43,7 @@ public class Ghost extends Node {
         this.paint(obj);
 
         // Initialize the timeline with a 0.5 second duration and a function to move the Pacman
-        timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> moveGhost()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+
 
     }
 
@@ -80,6 +81,8 @@ public class Ghost extends Node {
         }
     }
     public void startTimeline(){
+        timeline = new Timeline(new KeyFrame(Duration.seconds(maze.speed), event -> moveGhost()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
 }

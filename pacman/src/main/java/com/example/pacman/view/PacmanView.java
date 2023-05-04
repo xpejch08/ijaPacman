@@ -45,7 +45,7 @@ public class PacmanView extends Node {
         this.paint(obj);
 
         // Initialize the timeline with a 0.5 second duration and a function to move the Pacman
-        timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> movePacman()));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> movePacman()));
         timeline.setCycleCount(Timeline.INDEFINITE);
 
     }

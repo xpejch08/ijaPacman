@@ -32,11 +32,13 @@ public class Menu {
     Scene menuscene;
     Maze maze;
 
+
     public Menu(Maze maze) {
 
         this.menuGroup = new Group();
         this.menuscene = new Scene(menuGroup, 400, 400);
         this.maze = maze;
+
         Rectangle r = new Rectangle();
         r.setWidth(600);
         r.setHeight(45);
@@ -48,61 +50,83 @@ public class Menu {
 
 
     public void titlescreen(Stage primaryStage, Scene gamescreen){
+        VBox layout0 = new VBox();
         VBox layout = new VBox();
         VBox layout2 = new VBox();
+
+        layout0.setAlignment(Pos.CENTER);
         layout.setAlignment(Pos.CENTER);
         layout2.setAlignment(Pos.CENTER);
 
+
+        Scene scene0 = new Scene(layout0, 300, 300);
         Scene scene = new Scene(layout, 300, 300);
         Scene scene2 = new Scene(layout2, 300, 300);
 
-        Label label1 = new Label("This is the First Scene");
-        Label label2 = new Label("This is the Second Scene");
+        Label label0 = new Label("Welcome!\nWould you like to play or watch a replay?");
+        Label label1 = new Label("Choose the map:");
+        Label label2 = new Label("Choose difficulty (ghost speed):");
+        //WELCOME SCREEN BUTTONS
+        Button buttonplay = new Button("PLAY");
+        buttonplay.setOnAction(e -> {
+            primaryStage.setScene(scene);
 
-        Button buttonmap1 = new Button("Forward");
+        });
+        Button buttonwatch = new Button("WATCH");
+        buttonwatch.setOnAction(e -> {
+            primaryStage.setScene(scene2);
+
+        });
+
+//FIRST SCREEN BUTTONS
+        Button buttonmap1 = new Button("Labyrinth");
         buttonmap1.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
-        Button buttonmap2 = new Button("Forward");
+        Button buttonmap2 = new Button("Playground");
         buttonmap2.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
-        Button buttonmap3 = new Button("Forward");
+        Button buttonmap3 = new Button("Island");
         buttonmap3.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
-
-        Button buttonspeed1 = new Button("1");
+//SECOND SCREEN
+        Button buttonspeed1 = new Button("Slow and steady");
         buttonspeed1.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
+            maze.setSpeed(1);
+
             maze.startGhosts();
             maze.pac.startTimeline();
 
         });
-        Button buttonspeed2 = new Button("2");
+        Button buttonspeed2 = new Button("Normal");
         buttonspeed2.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
+            maze.setSpeed(2);
             maze.startGhosts();
             maze.pac.startTimeline();
 
         });
-        Button buttonspeed3 = new Button("3");
+        Button buttonspeed3 = new Button("BRRRRR");
         buttonspeed3.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
+            maze.setSpeed(3);
             maze.startGhosts();
             maze.pac.startTimeline();
 
         });
 
-
+        layout0.getChildren().addAll(label0, buttonplay, buttonwatch);
         layout.getChildren().addAll(label1, buttonmap1,buttonmap2,buttonmap3);
         layout2.getChildren().addAll(label2, buttonspeed1, buttonspeed2, buttonspeed3);
 
         primaryStage.setTitle("CodersLegacy");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene0);
         primaryStage.show();
 
     }
