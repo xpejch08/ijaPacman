@@ -1,8 +1,6 @@
 package com.example.pacman;
 import com.example.pacman.controller.MazeObject;
-import com.example.pacman.view.Ghost;
-import com.example.pacman.view.HUD;
-import com.example.pacman.view.PacmanView;
+import com.example.pacman.view.*;
 import com.example.pacman.controller.Maze;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
-import com.example.pacman.view.Grid;
+
 import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 import javafx.scene.Node;
@@ -22,6 +20,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Maze maze = new Maze();
+        Menu menu = new Menu(maze);
+        Stage primaryStage = new Stage();
 
         PacmanView pacman = null;
         Ghost ghost1 = null;
@@ -33,18 +34,18 @@ public class HelloApplication extends Application {
         int NUM_COLS;
         Group groupObject = new Group();
         //Group newgroup = new Group();
-        Maze maze = new Maze();
+
         maze.readSource();
         Grid grid = new Grid(maze);
 
         double height = grid.getY();
         double width = grid.getX();
         Scene scene = new Scene(groupObject, width , height);
-
+        menu.titlescreen(primaryStage, scene);
         // add the grid to the scene
 
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        //stage.setTitle("Hello!");
+        //stage.setScene(scene);
         NUM_ROWS = maze.getRowsG()+2;
         NUM_COLS = maze.getColumnG()+2;
         MazeObject tmp = null;
@@ -60,7 +61,7 @@ public class HelloApplication extends Application {
         HUD hud = new HUD(scene,groupObject,maze.getPacMan(NUM_ROWS, NUM_COLS) );
         groupObject.getChildren().add(grid);
         grid.toBack();
-        stage.show();
+        //stage.show();
     }
 
     public static void main(String[] args) {

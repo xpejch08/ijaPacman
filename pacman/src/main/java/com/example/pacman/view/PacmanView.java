@@ -60,6 +60,7 @@ public class PacmanView extends Node {
     }
 
     private void handleKeyPress(KeyEvent event) {
+        this.pac.canloose = true;
         if (event.getCode() == KeyCode.LEFT) {
             dir = FieldInterface.Direction.L;
             System.out.print("LEFT");

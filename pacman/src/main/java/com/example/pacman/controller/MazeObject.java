@@ -15,6 +15,7 @@ public class MazeObject {
     public boolean isEnd =  false;
     public boolean hasKey = false;
     public Maze maze;
+    public boolean canloose = false;
 
     public MazeObject(Maze maze, int rows, int cols){
         this.rows   = rows;
@@ -112,8 +113,9 @@ public class MazeObject {
     }
 
     public void lifeDown(){
-        lives--;
-
+        if(this.canloose == true) {
+            lives--;
+        }
     }
 
     public boolean setGhost(){
