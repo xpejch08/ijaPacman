@@ -26,6 +26,7 @@ public class HelloApplication extends Application {
         Stage primaryStage = new Stage();
 
         PacmanView pacman = null;
+        Key key = null;
         Ghost ghost1 = null;
         Ghost ghost2 = null;
         Ghost ghost3 = null;
@@ -51,6 +52,7 @@ public class HelloApplication extends Application {
         NUM_COLS = maze.getColumnG()+2;
         MazeObject tmp = null;
 
+        key = new Key(maze.getKey(NUM_ROWS,NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
         pacman = new PacmanView(maze.getPacMan(NUM_ROWS, NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
         maze.pac = pacman;
         maze.getGhosts(NUM_ROWS, NUM_COLS);
@@ -58,6 +60,7 @@ public class HelloApplication extends Application {
             Ghost i = new Ghost(maze,maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
             maze.GhostViews.add(i);
         }
+
 
         Circle sceneCircle = new Circle(100, 60, 40, Color.DARKORANGE);
 

@@ -32,7 +32,7 @@ public class Key {
     Maze maze;
     FieldInterface.Direction dir;
 
-    public Key(Maze maze,MazeObject obj, Scene scene, Group group, int rows, int cols){
+    public Key(MazeObject obj, Scene scene, Group group, int rows, int cols){
         pac = obj;
         thisgroup = group;
         this.maze = maze;

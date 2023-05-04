@@ -24,6 +24,8 @@ public class Maze implements MazeInterface{
     Field startField;
     MazeObject PacMan;
 
+    MazeObject Key;
+
     public PacmanView pac;
     public List <MazeObject> Ghosts = new ArrayList<>();
 
@@ -65,6 +67,20 @@ public class Maze implements MazeInterface{
                     if (tmp.isPacman) {
                         PacMan = tmp;
                         return PacMan;
+                    }
+                }
+            }
+        }
+        return PacMan;
+    }
+    public MazeObject getKey(int NUM_ROWS, int NUM_COLS) {
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                tmp = this.getField(row, col).getObject();
+                if (tmp != null) {
+                    if (tmp.isKey) {
+                        Key = tmp;
+                        return Key;
                     }
                 }
             }

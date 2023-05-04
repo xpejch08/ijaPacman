@@ -117,7 +117,7 @@ public class Field extends Object implements FieldInterface {
 
     @Override
     public boolean isEmpty() {
-        if (this.Pacman == null && this.Ghost == null && this.Key == null && this.End == null) {
+        if (this.Pacman == null && this.Ghost == null && this.Key == null && this.isEmpty) {
             return true;
         }
         return false;
@@ -155,15 +155,19 @@ public class Field extends Object implements FieldInterface {
     public void removeOfField(MazeObject obj){
         if (obj.isPacman){
             Pacman = null;
+            obj.getField().isPath = true;
         }
         if (obj.isGhost){
             Ghost = null;
+            obj.getField().isPath = true;
         }
         if (obj.isKey){
             Key = null;
+            obj.getField().isPath = true;
         }
         if (obj.isEnd){
             End = null;
+            obj.getField().isPath = true;
         }
 
     }
