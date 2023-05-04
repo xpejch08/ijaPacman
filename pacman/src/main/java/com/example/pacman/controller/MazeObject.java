@@ -46,11 +46,14 @@ public class MazeObject {
                         this.rows = next.rows;
                         this.cols = next.cols;
                         this.hasKey = true;
+                        System.out.println("HASKEY");
                         next.removeOfField(tmp);
                     }
-                    else if (tmp.isEnd) {
+                    else if (next.isEnd) {
                         if(this.hasKey){
-                            //quit game
+                            System.out.println("ENDEDGAME");
+                            this.rows = next.rows;
+                            this.cols = next.cols;
                         }
                         else{
                             this.rows = next.rows;
@@ -118,6 +121,9 @@ public class MazeObject {
         }
     }
 
+    public int getLives(){
+        return lives;
+    }
     public boolean setGhost(){
         if (isGhost == false) {
             isGhost = true;

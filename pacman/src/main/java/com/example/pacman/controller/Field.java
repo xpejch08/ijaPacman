@@ -12,6 +12,8 @@ public class Field extends Object implements FieldInterface {
 
     public boolean isPath = false;
     public boolean isStart = false;
+
+    public boolean isEnd = false;
     public boolean inMaze;
     public int type = 0;
     public boolean isEmpty = true;

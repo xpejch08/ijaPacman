@@ -139,8 +139,27 @@ public class Maze implements MazeInterface{
                     if (line.charAt(stringIndex) != 'X') {
                         if (line.charAt(stringIndex) != '.') {
                             if (line.charAt(stringIndex) != 'S') {
-                                flag = true;
-                                return false;
+                                if (line.charAt(stringIndex) != 'T') {
+                                    if (line.charAt(stringIndex) != 'K') {
+                                        flag = true;
+                                        return false;
+                                    }
+                                    else{
+                                        Field field = new Field(iterationRows, stringIndex + 1, mazeTmp);
+                                        MazeObject key = new MazeObject(mazeTmp, iterationRows, stringIndex + 1);
+                                        key.setKey();
+                                        field.setPath();
+                                        field.Key = key;
+                                        field.insertInMaze(iterationRows, stringIndex + 1);
+                                    }
+                                }
+                                else{
+                                    Field field = new Field(iterationRows, stringIndex + 1, mazeTmp);
+                                    field.isEnd = true;
+                                    field.isEmpty = false;
+                                    field.setPath();
+                                    field.insertInMaze(iterationRows, stringIndex + 1);
+                                }
                             }
                             //field generate
                             else {
