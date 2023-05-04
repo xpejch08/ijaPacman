@@ -1,5 +1,8 @@
 package com.example.pacman.controller;
 
+import com.example.pacman.view.Ghost;
+import com.example.pacman.view.PacmanView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,7 +18,11 @@ public class Maze implements MazeInterface{
     static boolean flag = false;
 
     Maze mazeTmp = this;
-
+    Field startField;
+    MazeObject PacMan;
+    public List <MazeObject> Ghosts = new ArrayList<>();
+    public int ghostCounter = 0;
+    MazeObject tmp;
 
     public  List<Field> Fields = new ArrayList<>();
     public  List<MazeObject> Objects = new ArrayList<>();
@@ -27,6 +34,61 @@ public class Maze implements MazeInterface{
     }
     public int getColumnG(){
         return rowsG;
+    }
+
+    public Field getStart() {
+        for (int row = 0; row < this.getRowsG() + 2; row++) {
+            for (int col = 0; col < this.getColumnG() + 2; col++) {
+                if (this.getField(row, col) != null && this.getField(row, col).isStart) {
+                    startField = this.getField(row, col);
+                    return startField;
+                }
+            }
+        }
+        return startField;
+    }
+
+    public MazeObject getPacMan(int NUM_ROWS, int NUM_COLS) {
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                tmp = this.getField(row, col).getObject();
+                if (tmp != null) {
+                    if (tmp.isPacman) {
+                        PacMan = tmp;
+                        return PacMan;
+                    }
+                }
+            }
+        }
+        return PacMan;
+    }
+    public void getGhosts(int NUM_ROWS, int NUM_COLS) {
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                tmp = this.getField(row, col).getObject();
+                if (tmp != null) {
+                    if (tmp.isGhost) {
+                        if (ghostCounter == 0) {
+                            ghostCounter++;
+                            Ghosts.add(tmp);
+
+                        } else if (ghostCounter == 1) {
+                            ghostCounter++;
+                            Ghosts.add(tmp);
+
+                        } else if (ghostCounter == 2) {
+                            ghostCounter++;
+                            Ghosts.add(tmp);
+
+                        } else if (ghostCounter == 3) {
+                            ghostCounter++;
+                            Ghosts.add(tmp);
+
+                        }
+                    }
+                }
+            }
+        }
     }
     @Override
     public void startReading(int rows, int cols){

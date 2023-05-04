@@ -1,6 +1,7 @@
 package com.example.pacman;
 import com.example.pacman.controller.MazeObject;
 import com.example.pacman.view.Ghost;
+import com.example.pacman.view.HUD;
 import com.example.pacman.view.PacmanView;
 import com.example.pacman.controller.Maze;
 import javafx.application.Application;
@@ -47,45 +48,22 @@ public class HelloApplication extends Application {
         NUM_ROWS = maze.getRowsG()+2;
         NUM_COLS = maze.getColumnG()+2;
         MazeObject tmp = null;
-        int ghostCounter = 0;
 
-        for (int row =0; row<NUM_ROWS; row++){
-            for(int col = 0; col<NUM_COLS; col++ ){
-                tmp = maze.getField(row,col).getObject();
-                if(tmp != null) {
-                    if (tmp.isPacman) {
-                        pacman = new PacmanView(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
-
-                    }
-                    if(tmp.isGhost){
-                        if(ghostCounter == 0) {
-                            ghostCounter++;
-                            ghost1 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
-                        }
-                        else if(ghostCounter == 1) {
-                            ghostCounter++;
-                            ghost2 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
-                        }
-                        else if(ghostCounter == 2) {
-                            ghostCounter++;
-                            ghost3 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
-                        }
-                        else if(ghostCounter == 3) {
-                            ghostCounter++;
-                            ghost4 = new Ghost(tmp, scene, groupObject, NUM_ROWS, NUM_COLS);
-                        }
-                    }
-                }
-            }
-
+        pacman = new PacmanView(maze.getPacMan(NUM_ROWS, NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
+        maze.getGhosts(NUM_ROWS, NUM_COLS);
+        for (int j =0; j<maze.ghostCounter; j++){
+            Ghost i = new Ghost(maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
         }
+
         Circle sceneCircle = new Circle(100, 60, 40, Color.DARKORANGE);
 
+        HUD hud = new HUD(scene,groupObject,maze.getPacMan(NUM_ROWS, NUM_COLS) );
 
 
 
         groupObject.getChildren().add(grid);
         grid.toBack();
+
 
 
 

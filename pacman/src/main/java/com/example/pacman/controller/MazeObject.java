@@ -1,5 +1,7 @@
 package com.example.pacman.controller;
 
+
+
 public class MazeObject {
 
     public int rows;
@@ -32,17 +34,9 @@ public class MazeObject {
             if(!next.isEmpty()) {
                 if (this.isPacman) {
                     if (tmp.isGhost) {
-                        for (int row = 0; row < maze.getRowsG() + 2; row++) {
-                            for (int col = 0; col < maze.getColumnG() + 2; col++) {
-                                if(maze.getField(row, col) != null && maze.getField(row, col).isStart){
-                                    Field fieldSwap = maze.getField(row, col);
-                                    this.getField().removeOfField(this);
-                                    this.rows = fieldSwap.rows;
-                                    this.cols = fieldSwap.cols;
-                                }
-                            }
-                        }
+                        this.respawn();
                     }
+
                     else if (tmp.isKey) {
                         this.rows = next.rows;
                         this.cols = next.cols;
@@ -65,7 +59,7 @@ public class MazeObject {
                 }
                 if(this.isGhost){
                     if(next.getObject().isPacman){
-                        next.getObject().lifeDown();
+                        next.getObject().respawn();
 
                     }else{
                         return false;
@@ -92,11 +86,16 @@ public class MazeObject {
                 }
 
                 return true;
-        }
-        //cant move
-        else{
+        }else{
             return false;
         }
+    }
+    public void respawn(){
+        Field fieldSwap = maze.getStart();
+        this.getField().removeOfField(this);
+        this.rows = fieldSwap.rows;
+        this.cols = fieldSwap.cols;
+        this.lifeDown();
     }
 
     public boolean setPacman() {
@@ -109,6 +108,7 @@ public class MazeObject {
 
     public void lifeDown(){
         lives--;
+
     }
 
     public boolean setGhost(){
