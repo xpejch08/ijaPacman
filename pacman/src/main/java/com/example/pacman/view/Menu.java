@@ -2,7 +2,6 @@ package com.example.pacman.view;
 
 import com.example.pacman.controller.Log;
 import com.example.pacman.controller.Maze;
-import com.example.pacman.controller.MazeObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -26,6 +25,7 @@ import static javafx.scene.paint.Color.*;
  * Consists of the title screen, choose map screen, choose speed screen, then shows gamescreen.
  * */
 public class Menu {
+    //initial log number
     private int iterations = 1;
     Grid grid;
     Group menuGroup;
@@ -39,35 +39,40 @@ public class Menu {
         this.menuGroup = new Group();
         this.menuscene = new Scene(menuGroup, 400, 400);
         this.maze = maze;
-        //basic background
-
     }
 
-
+    /** Creates the title screen.
+     * @param primaryStage The stage on which everything is displayed in the application.
+     * @param gamescreen Used to switch to the gamescreen.
+     * @param grid The grid object, used to get the size of the grid.
+     * @param grup The group to which the title screen is added to and then shown.
+     * */
     public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid,  Group grup){
         this.grid = grid;
         this.groupObject = grup;
+//Create a group of login
         Group logGroup = new Group();
+//Create layouts for the different screens
         VBox layout0 = new VBox();
         VBox layout = new VBox();
         VBox layout2 = new VBox();
-
+// Set the alignment of the layout nodes to the center of the screen
         layout0.setAlignment(Pos.CENTER);
         layout.setAlignment(Pos.CENTER);
         layout2.setAlignment(Pos.CENTER);
-
-
+// Create scenes with the specified layout and dimensions
         Scene scene0 = new Scene(layout0, 300, 300);
         Scene scene = new Scene(layout, 300, 300);
         Scene scene2 = new Scene(layout2, 300, 300);
+// Create a scene for logging
         Scene logScene = new Scene(logGroup,grid.getY(), grid.getX());
-
-        //TEXTS for logging hud
+// Create a rectangle to be used as the background for the logging HUD
         Rectangle r = new Rectangle();
         r.setWidth(logScene.getWidth());
         r.setHeight(30);
         r.setStroke(BLACK);
         r.setFill(Color.DARKGRAY);
+// Create texts to display the different entities in the game
         Text ghostcol = new Text();
         ghostcol.setText("GHOST");
         ghostcol.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
@@ -92,18 +97,22 @@ public class Menu {
         endcol.setFill(RED);
         endcol.setX(280);
         endcol.setY(20);
-        Group loghudGroup = new Group(r,ghostcol,paccol,keycol,endcol);
+
+// Add the texts and rectangle to a group for the logging HUD
+        Group loghudGroup = new Group(r, ghostcol, paccol, keycol, endcol);
+
+// Create labels for screens in the game
         Label label0 = new Label("Welcome!\nWould you like to play");
         Label label01 = new Label("or watch a replay of your last attempt?");
         Label label1 = new Label("Choose map:");
         Label label2 = new Label("Choose difficulty (ghost speed):");
-        //WELCOME SCREEN BUTTONS
+
+//WELCOME SCREEN BUTTONS
         Button buttonplay = new Button("PLAY");
         buttonplay.setOnAction(e -> {
             primaryStage.setScene(scene);
             Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
             log.clearLogFolder();
-
         });
         Button buttonwatch = new Button(">>");
         buttonwatch.setOnAction(e -> {
@@ -129,8 +138,8 @@ public class Menu {
             }));
             timeline.setCycleCount(maze.logFilesCount - 1);
             timeline.play();
-
         });
+
         Button buttonwatch2 = new Button("<<");
         buttonwatch2.setOnAction(e -> {
             primaryStage.setScene(logScene);

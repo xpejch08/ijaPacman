@@ -1,11 +1,9 @@
 package com.example.pacman.view;
 
-import com.example.pacman.controller.FieldInterface;
 import com.example.pacman.controller.MazeObject;
 import com.example.pacman.controller.Maze;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

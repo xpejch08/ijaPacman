@@ -1,7 +1,6 @@
 package com.example.pacman.view;
 
 import com.example.pacman.controller.FieldInterface;
-import com.example.pacman.controller.Log;
 import com.example.pacman.controller.MazeObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,9 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.ArcType;
 import javafx.scene.Group;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -24,8 +21,11 @@ import javafx.util.Duration;
 
 import static javafx.scene.paint.Color.BLACK;
 
+/**
+ * @Author Ondřej Češka, Štěpán Pejchar
+ * Represents the graphical view of the Pacman game.
+ */
 public class PacmanView extends Node {
-
     private MazeObject pac = null;
     public Group thisgroup;
     Scene thisscene;
@@ -34,11 +34,17 @@ public class PacmanView extends Node {
     int mazeendrows;
     int mazeendcols;
     Canvas canvas = new Canvas();
-
     Image image;
     FieldInterface.Direction dir;
     private final Timeline timeline;
 
+    /**
+     * @param obj MazeObject, that this viewmodel represents
+     * @param scene Scene, that this viewmodel is shown on.
+     * @param group Group, that this viewmodel is added to and then displayed.
+     * @param rows Number of rows in the maze
+     * @param cols Number of columns in the maze
+     */
     public PacmanView(MazeObject obj, Scene scene, Group group, int rows, int cols) {
         pac = obj;
         thisgroup = group;
@@ -66,16 +72,18 @@ public class PacmanView extends Node {
         timeline.setCycleCount(Timeline.INDEFINITE);
 
     }
-
+    /**
+     * Paints the Pacman on the canvas on the correct position.
+     * @param obj MazeObject, that this viewmodel represents, to get the position from.
+     */
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
-
-    public Canvas getNode() {
-        return canvas;
-    }
-
+    /**
+     * Handles the keypresses and sets the direction of the Pacman.
+     * @param event KeyEvent, that triggered this function.
+     */
     private void handleKeyPress(KeyEvent event) {
         this.pac.canloose = true;
 
@@ -89,7 +97,9 @@ public class PacmanView extends Node {
             dir =  FieldInterface.Direction.D;
         }
     }
-
+    /**
+     * Moves the Pacman in the direction set by the handleKeyPress function and updates the view.
+     */
     private void movePacman() {
         // Move the Pacman and update the view
         if(dir != null) {
@@ -99,9 +109,15 @@ public class PacmanView extends Node {
             }
         }
     }
+    /**
+     * Starts the timeline.
+     */
     public void startTimeline(){
         timeline.play();
     }
+    /**
+     * Stops the timeline and shows game over screen when needed.
+     */
     public void endGame(){
         if(this.pac.rows == this.mazeendrows && this.pac.cols == this.mazeendcols || this.pac.getLives() == 0){
             Text t = new Text();
