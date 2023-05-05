@@ -90,7 +90,7 @@ public class MazeObject {
                     //next field is the end, if the pacman has all keys the game can end, else he can't move onto the field
                     else if (next.isEnd) {
                         //has keys
-                        if(this.hasKey && maze.keyCounter == 0){
+                        if(maze.keyCounter == 0){
                             System.out.println("ENDEDGAME");
                             next.removeOfField(tmp);
                             this.getField().removeOfField(this);
