@@ -322,7 +322,7 @@ public class Maze implements MazeInterface{
         boolean firstLineFlag = false;
         String maze = "maze1.txt";
         try {
-            File mazeSource = new File("../pacman/src/mazes/maze1.txt");
+            File mazeSource = new File("../pacman/data/maze2.txt");
             Scanner reader = new Scanner(mazeSource);
             // Read the file line by line
             while (reader.hasNextLine()) {
