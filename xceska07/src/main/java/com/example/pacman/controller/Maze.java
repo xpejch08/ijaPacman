@@ -322,7 +322,7 @@ public class Maze implements MazeInterface{
         boolean firstLineFlag = false;
         String maze = "maze1.txt";
         try {
-            File mazeSource = new File("../pacman/data/maze1.txt");
+            File mazeSource = new File("../xceska07/data/maze1.txt");
             Scanner reader = new Scanner(mazeSource);
             // Read the file line by line
             while (reader.hasNextLine()) {
@@ -359,12 +359,12 @@ public class Maze implements MazeInterface{
     public boolean readSourceLog(int log) {
         boolean firstLineFlag = false;
         try {
-            File logFolder = new File("../pacman/data/log");
+            File logFolder = new File("../xceska07/data/log");
             if (logFolder.exists() && logFolder.isDirectory()) {
                 File[] logFiles = logFolder.listFiles();
                 logFilesCount = logFiles.length;
             }
-            File mazeSource = new File("../pacman/data/log/" + log + ".txt");
+            File mazeSource = new File("../xceska07/data/log/" + log + ".txt");
             Scanner reader = new Scanner(mazeSource);
             // Read the file line by line
             while (reader.hasNextLine()) {
@@ -386,7 +386,7 @@ public class Maze implements MazeInterface{
             return true;
         } catch (FileNotFoundException e) {
             // Catch and print the exception if file not found
-            System.out.println("Cant open file\n");
+            System.out.println("Cant open file because it probably doesnt exist\n");
             e.printStackTrace();
             return false;
         }
