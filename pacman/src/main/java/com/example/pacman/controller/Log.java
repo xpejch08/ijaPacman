@@ -7,25 +7,57 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import static com.example.pacman.controller.MazeObjectInterface.maze;
 
+/**
+ * A class for creating and managing log files for a Pac-Man game.
+ */
 public class Log {
 
+    /**
+     * The timeline for creating log files.
+     */
     public Timeline timeline;
+
+    /**
+     * The maze to log.
+     */
     private final Maze m_maze;
+
+    /**
+     * The number of rows in the maze.
+     */
     private final int m_rows;
+
+    /**
+     * The number of columns in the maze.
+     */
     private final int m_cols;
 
+    /**
+     * The current iteration of the log.
+     */
     public static int logIteration = 1;
 
+    /**
+     * Creates a new Log object with the specified maze, number of rows, and number of columns.
+     *
+     * @param maze the maze to log
+     * @param rows the number of rows in the maze
+     * @param cols the number of columns in the maze
+     */
     public Log(Maze maze, int rows, int cols){
-            m_maze = maze;
-            m_rows = rows;
-            m_cols = cols;
+        m_maze = maze;
+        m_rows = rows;
+        m_cols = cols;
     }
 
+    /**
+     * Clears all log files from the "log" folder.
+     */
     public void clearLogFolder() {
-        File logFolder = new File("data/log");
+        File logFolder = new File("log");
         if (logFolder.exists() && logFolder.isDirectory()) {
             File[] logFiles = logFolder.listFiles();
             for (File logFile : logFiles) {
@@ -35,6 +67,10 @@ public class Log {
             }
         }
     }
+
+    /**
+     * Starts the timeline for creating log files.
+     */
     public void startTimeline(){
         if(m_maze.diff == 1) {
             timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> createLog()));
@@ -47,6 +83,10 @@ public class Log {
             timeline.play();
         }
     }
+
+    /**
+     * Creates a new log file and writes the current state of the maze to it.
+     */
     public void createLog() {
 
         try {
@@ -88,6 +128,12 @@ public class Log {
             e.printStackTrace();
         }
     }
+    /**
+
+     Stops the timeline associated with this Log instance.
+     The timeline is used for creating logs periodically based on the maze movement speed.
+     Once called, the timeline stops and no more logs will be created.
+     */
     public void stopTime(){
         this.timeline.stop();
     }
