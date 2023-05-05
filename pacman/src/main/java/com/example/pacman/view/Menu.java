@@ -102,8 +102,8 @@ public class Menu {
         endcol.setY(20);
         Group loghudGroup = new Group(r,ghostcol,paccol,keycol,endcol);
         Label label0 = new Label("Welcome!\nWould you like to play");
-        Label label01 = new Label("or watch a replay?");
-        Label label1 = new Label("Choose the map:");
+        Label label01 = new Label("or watch a replay of your last attempt?");
+        Label label1 = new Label("Choose map:");
         Label label2 = new Label("Choose difficulty (ghost speed):");
         //WELCOME SCREEN BUTTONS
         Button buttonplay = new Button("PLAY");

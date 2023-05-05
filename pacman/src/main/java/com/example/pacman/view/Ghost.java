@@ -8,37 +8,38 @@ import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.Group;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-import static javafx.scene.paint.Color.BLACK;
 
+/**
+ * @author Ondřej Češka, Štěpán Pejchar
+ *
+ * This class is used to create a ghost viewmodel and move it around the maze.
+ */
 public class Ghost extends Node {
 
-    private MazeObject pac = null;
+    private MazeObject pac;
     public Group thisgroup;
-
     GraphicsContext gc;
     int CELL_SIZE = 50;
     int mazeendrows;
     int mazeendcols;
     Canvas canvas = new Canvas();
     Maze maze;
-    FieldInterface.Direction dir;
     private Timeline timeline;
     Image image;
-
-    public Ghost(Maze maze,MazeObject obj, Scene scene, Group group, int rows, int cols) throws FileNotFoundException {
+    /**
+     * @param obj MazeObject, that this viewmodel represents
+     * @param group Group, that this viewmodel is added to and then displayed
+     * @param rows Number of rows in the maze
+     * @param cols Number of columns in the maze
+     */
+    public Ghost(Maze maze,MazeObject obj, Group group, int rows, int cols){
         pac = obj;
         thisgroup = group;
         this.maze = maze;
@@ -48,28 +49,21 @@ public class Ghost extends Node {
         mazeendrows = maze.getEnd().rows;
         mazeendcols = maze.getEnd().cols;
         gc = canvas.getGraphicsContext2D();
-
         image = new Image("file:lib/images/ghost.png");
-
         thisgroup.getChildren().add(canvas);
-        this.paint(obj);
-
-        // Initialize the timeline with a 0.5 second duration and a function to move the Pacman
-
-
+        this.paint();
     }
-
-    public void paint(MazeObject obj) {
+    /**
+     * Paints the ghost viewmodel on the canvas at correct position.
+     */
+    public void paint() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
-        gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        gc.drawImage(image,this.pac.cols * CELL_SIZE + 10, this.pac.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
-
-    public Canvas getNode() {
-        return canvas;
-    }
-
-
+    /**
+     * Randomly moves the ghost viewmodel around the maze and moves the actual ghost in BE .
+     */
     private void moveGhost() {
         Random rand = new Random();
         int dirNum = rand.nextInt(4); // generate random number between 0 and 3
@@ -90,9 +84,12 @@ public class Ghost extends Node {
         }
         // Move the Pacman and update the view
         if (pac.move(dir)) {
-            paint(pac);
+            paint();
         }
     }
+    /**
+     * Starts the timeline, that moves the ghost viewmodel. The KeyFrame is set to the specified speed.
+     */
     public void startTimeline(){
         timeline = new Timeline(new KeyFrame(Duration.seconds(maze.speed), event ->{
             moveGhost();
@@ -101,6 +98,9 @@ public class Ghost extends Node {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
+    /**
+     *  Stops the timeline, that moves the ghost viewmodel when the game is over.
+     */
     public void endGame(){
         if(this.pac.rows == this.mazeendrows && this.pac.cols == this.mazeendcols){
             System.out.println("KONEC");
