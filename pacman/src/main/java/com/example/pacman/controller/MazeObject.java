@@ -4,33 +4,53 @@ package com.example.pacman.controller;
 
 public class MazeObject {
 
-    public int rows;
-    public int cols;
-    public int lives = 3;
+    public int rows; // The row coordinate of the object in the maze.
+    public int cols; // The column coordinate of the object in the maze.
+    public int lives = 3; // The number of lives the object has.
+    public int steps = 0; // The number of steps the object has taken.
+    public boolean isPacman = false; // Whether the object is a Pacman.
+    public boolean isGhost = false; // Whether the object is a ghost.
+    public boolean isKey = false; // Whether the object is a key.
+    public boolean isEnd = false; // Whether the object is an end.
+    public boolean hasKey = false; // Whether the object has a key.
+
+    public Maze maze; // The maze the object is in.
 
 
-    public int steps = 0;
-    public boolean isPacman = false;
-    public boolean isGhost = false;
-    public boolean isKey = false;
-    public boolean isEnd =  false;
-    public boolean hasKey = false;
-    public Maze maze;
-    public boolean canloose = false;
-
+    /**
+     * Creates a MazeObject with the specified coordinates in the specified maze.
+     * @param maze the maze the object is in
+     * @param rows the row coordinate of the object in the maze
+     * @param cols the column coordinate of the object in the maze
+     */
     public MazeObject(Maze maze, int rows, int cols){
-        this.rows   = rows;
-        this.cols   = cols;
+        this.rows = rows;
+        this.cols = cols;
         this.maze = maze;
     }
 
+    /**
+     * Returns the field the object is currently on.
+     * @return the field the object is currently on
+     */
     public Field getField(){
         return maze.getField(rows, cols);
     }
-    public boolean canMove (FieldInterface.Direction dir){
+
+    /**
+     * Returns whether the object can move in the specified direction.
+     * @param dir the direction the object wants to move
+     * @return true if the object can move in the specified direction, false otherwise
+     */
+    public boolean canMove(FieldInterface.Direction dir){
         return this.getField().nextField(dir).isPath;
     }
 
+    /**
+     * Moves the object in the specified direction.
+     * @param dir the direction the object wants to move
+     * @return true if the object was moved successfully, false otherwise
+     */
     public boolean move (FieldInterface.Direction dir){
         Field next = this.getField().nextField(dir);
         MazeObject tmp = next.getObject();
@@ -107,6 +127,9 @@ public class MazeObject {
             return false;
         }
     }
+    /**
+     * Respawns the object to the start of the maze.
+     */
     public void respawn(){
         Field fieldSwap = maze.getStart();
         this.getField().removeOfField(this);
@@ -114,7 +137,10 @@ public class MazeObject {
         this.cols = fieldSwap.cols;
         this.lifeDown();
     }
-
+    /**
+     * Sets the object to a Pacman.
+     * @return true if the object was set to a Pacman successfully, false otherwise
+     */
     public boolean setPacman() {
         if (!isPacman) {
             isPacman = true;
@@ -122,14 +148,24 @@ public class MazeObject {
         }else
             return false;
     }
-
+    /**
+     * Decreases the number of lives the object has.
+     */
     public void lifeDown(){
             lives--;
     }
-
+    /**
+     * Returns the number of lives the object has.
+     * @return the number of lives the object has
+     */
     public int getLives(){
         return lives;
     }
+
+    /**
+     * Sets the object to a ghost.
+     * @return true if the object was set to a ghost successfully, false otherwise
+     */
     public boolean setGhost(){
         if (!isGhost) {
             isGhost = true;
@@ -137,6 +173,10 @@ public class MazeObject {
         }else
             return false;
     }
+    /**
+     * Sets the object to a key.
+     * @return true if the object was set to a key successfully, false otherwise
+     */
     public boolean setKey(){
         if (!isKey) {
             isKey = true;
@@ -144,46 +184,16 @@ public class MazeObject {
         }else
             return false;
     }
+    /**
+     * Sets the object to an end.
+     * @return true if the object was set to an end successfully, false otherwise
+     */
     public boolean setEnd(){
         if (!isEnd) {
             isEnd = true;
             return true;
         }else
             return false;
-    }
-    public boolean removePacman(){
-        if (isPacman) {
-            isPacman = false;
-            return true;
-        }else
-            return false;
-    }
-    public boolean removeGhost(){
-        if (isGhost) {
-            isGhost = false;
-            return true;
-        }else
-            return false;
-    }
-    public boolean removeKey(){
-        if (isKey) {
-            isKey = false;
-            return true;
-        }else
-            return false;
-    }
-    public boolean removeEnd(){
-        if (isEnd) {
-            isEnd = false;
-            return true;
-        }else
-            return false;
-    }
-    public void removeAll(){
-        isPacman = false;
-        isGhost = false;
-        isKey = false;
-        isEnd = false;
     }
 
 }

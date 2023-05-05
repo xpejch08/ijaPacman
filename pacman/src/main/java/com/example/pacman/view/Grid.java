@@ -12,8 +12,13 @@ import com.example.pacman.controller.Maze;
  */
 public class Grid extends GridPane {
 
+    // The size of a single cell in pixels
     private static final int CELL_SIZE = 50;
+
+    // The number of rows in the grid
     public int NUM_ROWS;
+
+    // The number of columns in the grid
     public int NUM_COLS;
     /**
      * @param maze Maze, that is used to generate the grid

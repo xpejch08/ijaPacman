@@ -6,13 +6,11 @@ import com.example.pacman.controller.Maze;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.Group;
 import javafx.util.Duration;
-import java.io.FileNotFoundException;
 import java.util.Random;
 
 
@@ -23,16 +21,16 @@ import java.util.Random;
  */
 public class Ghost extends Node {
 
-    private MazeObject pac;
-    public Group thisgroup;
-    GraphicsContext gc;
-    int CELL_SIZE = 50;
-    int mazeendrows;
-    int mazeendcols;
-    Canvas canvas = new Canvas();
-    Maze maze;
-    private Timeline timeline;
-    Image image;
+    private MazeObject pac; // instance of MazeObject class that this viewmodel represents
+    public Group thisgroup; // Group that this viewmodel is added to and then displayed
+    GraphicsContext gc; // GraphicsContext object used for rendering on Canvas
+    int CELL_SIZE = 50; // size of each cell in the maze
+    int mazeendrows; // max row index of the maze
+    int mazeendcols; // max column index of the maze
+    Canvas canvas = new Canvas(); // canvas object used for rendering the ghost
+    Maze maze; // the maze that the ghost is in
+    private Timeline timeline; // timeline used for moving the ghost
+    Image image; // image used for rendering the ghost on canvas
     /**
      * @param obj MazeObject, that this viewmodel represents
      * @param group Group, that this viewmodel is added to and then displayed

@@ -57,7 +57,7 @@ public class Log {
      * Clears all log files from the "log" folder.
      */
     public void clearLogFolder() {
-        File logFolder = new File("log");
+        File logFolder = new File("data/log");
         if (logFolder.exists() && logFolder.isDirectory()) {
             File[] logFiles = logFolder.listFiles();
             for (File logFile : logFiles) {

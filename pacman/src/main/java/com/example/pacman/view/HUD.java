@@ -20,10 +20,10 @@ import static javafx.scene.paint.Color.BLACK;
  */
 public class HUD {
 
-    private final MazeObject pac;
-    Text lives = new Text();
-    Text steps = new Text();
-    Text diff = new Text();
+    private final MazeObject pac; //pacman object in the game
+    Text lives = new Text(); //text displaying the number of lives
+    Text steps = new Text(); //text displaying the number of steps
+    Text diff = new Text(); //text displaying the speed
     /**
      * @param scene The scene to which the HUD is added to, used to get width.
      * @param group Grop to which the HUD is added to and displayed.

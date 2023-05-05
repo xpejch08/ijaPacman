@@ -23,19 +23,40 @@ import static javafx.scene.paint.Color.BLACK;
 
 /**
  * @Author Ondřej Češka, Štěpán Pejchar
- * Represents the graphical view of the Pacman game.
+ * Represents the viewmodel of the Pacman game.
  */
 public class PacmanView extends Node {
+    // The MazeObject representing Pacman
     private MazeObject pac = null;
+
+    // The Group that this viewmodel is added to and then displayed
     public Group thisgroup;
+
+    // The Scene that this viewmodel is shown on
     Scene thisscene;
+
+    // The GraphicsContext of the Canvas used to draw the Pacman and the maze
     GraphicsContext gc;
+
+    // The size of each cell in the maze
     int CELL_SIZE = 50;
+
+    // The number of rows in the maze
     int mazeendrows;
+
+    // The number of columns in the maze
     int mazeendcols;
+
+    // The Canvas used to draw the Pacman and the maze
     Canvas canvas = new Canvas();
+
+    // The image of the Pacman
     Image image;
+
+    // The direction whre pacman wants to move
     FieldInterface.Direction dir;
+
+    // The Timeline used to move the Pacman
     private final Timeline timeline;
 
     /**
@@ -85,7 +106,7 @@ public class PacmanView extends Node {
      * @param event KeyEvent, that triggered this function.
      */
     private void handleKeyPress(KeyEvent event) {
-        this.pac.canloose = true;
+
 
         if (event.getCode() == KeyCode.LEFT) {
             dir = FieldInterface.Direction.L;

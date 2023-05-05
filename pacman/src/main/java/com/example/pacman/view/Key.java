@@ -14,14 +14,13 @@ import javafx.util.Duration;
  * Represents a key viewmodel and moves it around the maze.
  */
 public class Key {
-    private MazeObject pac;
-    public Group thisgroup;
-    GraphicsContext gc;
-    int CELL_SIZE = 50;
-    private final Timeline timeline;
-    Canvas canvas = new Canvas();
-    Maze maze;
-    Image image;
+    private MazeObject pac; // Pacman in the maze
+    public Group thisgroup; // Group, that this viewmodel is added to and then displayed
+    GraphicsContext gc; // GraphicsContext of the canvas that this viewmodel is drawn on
+    int CELL_SIZE = 50; // Size of one cell in the maze
+    private final Timeline timeline; // Timeline, that moves the viewmodel
+    Canvas canvas = new Canvas(); // Canvas, that this viewmodel is drawn on
+    Image image; // Image of the viewmodel used to draw it
     /**
      * @param obj MazeObject, that this viewmodel represents
      * @param group Group, that this viewmodel is added to and then displayed
@@ -31,7 +30,7 @@ public class Key {
     public Key(MazeObject obj, Group group, int rows, int cols){
         pac = obj;
         thisgroup = group;
-        this.maze = maze;
+
         canvas.setHeight(rows * CELL_SIZE);
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");

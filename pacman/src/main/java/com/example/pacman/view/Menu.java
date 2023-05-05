@@ -27,11 +27,10 @@ import static javafx.scene.paint.Color.*;
 public class Menu {
     //initial log number
     private int iterations = 1;
-    Grid grid;
-    Group menuGroup;
-    Scene menuscene;
-    Maze maze;
-    Group groupObject;
+    Grid grid; //grid, used to get the size of the grid
+    Group menuGroup; //group to which the menu is added to
+    Scene menuscene; //scene on which the menu is displayed
+    Maze maze; //maze object, used to get the difficulty
     /**
      * @param maze The maze object, used to get the difficulty.
      * */
@@ -45,11 +44,11 @@ public class Menu {
      * @param primaryStage The stage on which everything is displayed in the application.
      * @param gamescreen Used to switch to the gamescreen.
      * @param grid The grid object, used to get the size of the grid.
-     * @param grup The group to which the title screen is added to and then shown.
+     *
      * */
-    public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid,  Group grup){
+    public void titlescreen(Stage primaryStage, Scene gamescreen, Grid grid){
         this.grid = grid;
-        this.groupObject = grup;
+
 //Create a group of login
         Group logGroup = new Group();
 //Create layouts for the different screens
