@@ -170,22 +170,26 @@ public class Menu {
 
 //FIRST SCREEN BUTTONS
         Button buttonmap1 = new Button("Labyrinth");
+        buttonmap1.setMinWidth(120);
         buttonmap1.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
         Button buttonmap2 = new Button("Playground");
+        buttonmap2.setMinWidth(120);
         buttonmap2.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
         Button buttonmap3 = new Button("Island");
+        buttonmap3.setMinWidth(120);
         buttonmap3.setOnAction(e -> {
             primaryStage.setScene(scene2);
 
         });
 //SECOND SCREEN
         Button buttonspeed1 = new Button("1-SLOW");
+        buttonspeed1.setMinWidth(70);
         buttonspeed1.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(1);
@@ -198,6 +202,7 @@ public class Menu {
 
         });
         Button buttonspeed2 = new Button("2-FAST");
+        buttonspeed2.setMinWidth(70);
         buttonspeed2.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(2);
@@ -209,6 +214,7 @@ public class Menu {
 
         });
         Button buttonspeed3 = new Button("3-ŠKRR");
+        buttonspeed3.setMinWidth(70);
         buttonspeed3.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(3);
