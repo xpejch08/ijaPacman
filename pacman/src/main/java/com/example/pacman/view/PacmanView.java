@@ -22,7 +22,7 @@ import javafx.util.Duration;
 import static javafx.scene.paint.Color.BLACK;
 
 /**
- * @Author Ondřej Češka, Štěpán Pejchar
+ * @author Ondřej Češka, Štěpán Pejchar
  * Represents the viewmodel of the Pacman game.
  */
 public class PacmanView extends Node {

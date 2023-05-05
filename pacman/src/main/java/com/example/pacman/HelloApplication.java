@@ -30,7 +30,7 @@ import javafx.scene.Group;
 
 
 /**
- * @Author Ondřej Češka, Štěpán Pejchar
+ * @author Ondřej Češka, Štěpán Pejchar
  * The main class of the application.
  */
 public class HelloApplication extends Application {

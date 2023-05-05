@@ -1,7 +1,12 @@
 package com.example.pacman.controller;
 
 
-
+/**
+ * @author Štěpán Pejchar xpejch08
+ * @author Ondřej Češka   xceska07
+ *
+ * A maze object defining all the objects on the field: pacman, ghost, key, end
+ */
 public class MazeObject {
 
     public int rows; // The row coordinate of the object in the maze.
@@ -54,18 +59,24 @@ public class MazeObject {
     public boolean move (FieldInterface.Direction dir){
         Field next = this.getField().nextField(dir);
         MazeObject tmp = next.getObject();
+        // if the game can end no one moves anymore
         if(maze.endgame){
             return false;
         }
+        //asking if the object can move in the specified direction
         if (canMove(dir)) {
+            //checking if next field is empty or not
             if(!next.isEmpty()) {
+                //checking for pacman
                 if (this.isPacman) {
 
+                    //pacman and ghost -> pacman will respawn to the start
                     if (tmp != null && tmp.isGhost) {
                         this.respawn();
 
                     }
 
+                    //next field is a key, the pacman jumps on the field and the key object deletes
                     else if (tmp != null && tmp.isKey) {
                         Field fieldSwap = next;
                         maze.keyCounter--;
@@ -76,7 +87,9 @@ public class MazeObject {
                         this.hasKey = true;
                         System.out.println("HASKEY");
                     }
+                    //next field is the end, if the pacman has all keys the game can end, else he can't move onto the field
                     else if (next.isEnd) {
+                        //has keys
                         if(this.hasKey && maze.keyCounter == 0){
                             System.out.println("ENDEDGAME");
                             next.removeOfField(tmp);
@@ -84,16 +97,18 @@ public class MazeObject {
                             this.rows = next.rows;
                             this.cols = next.cols;
                         }
-                        // ask if he has a key, if yes end game
                     }
+                    //no keys
                     else{
                         return false;
                     }
                 }
+                //the object moving is the ghost
                 if(this.isGhost){
                     if(next.getObject() == null){
                         return false;
                     }
+                    //if next object is pacman we respawn pacman
                     if(next.getObject().isPacman){
                         next.getObject().respawn();
 
@@ -104,6 +119,7 @@ public class MazeObject {
                 //ghost movement
                 return true;
             }
+                // if next field is empty we just move the object
                 this.steps++;
                 next.insertOnField(this);
                 this.getField().removeOfField(this);
