@@ -23,7 +23,7 @@ public class MazeObject {
         this.maze = maze;
     }
 
-    Field getField(){
+    public Field getField(){
         return maze.getField(rows, cols);
     }
     public boolean canMove (FieldInterface.Direction dir){
