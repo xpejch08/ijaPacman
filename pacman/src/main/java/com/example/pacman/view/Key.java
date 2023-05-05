@@ -5,38 +5,32 @@ import com.example.pacman.controller.MazeObject;
 import com.example.pacman.controller.Maze;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.Group;
 import javafx.util.Duration;
-
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Random;
-
-
+/**
+ * @author Štěpán Pejchar
+ * Represents a key viewmodel and moves it around the maze.
+ */
 public class Key {
-    private MazeObject pac = null;
+    private MazeObject pac;
     public Group thisgroup;
-
     GraphicsContext gc;
     int CELL_SIZE = 50;
-
     private final Timeline timeline;
-
     Canvas canvas = new Canvas();
     Maze maze;
-    FieldInterface.Direction dir;
-
     Image image;
-
-    public Key(MazeObject obj, Scene scene, Group group, int rows, int cols){
+    /**
+     * @param obj MazeObject, that this viewmodel represents
+     * @param group Group, that this viewmodel is added to and then displayed
+     * @param rows Number of rows in the maze
+     * @param cols Number of columns in the maze
+     */
+    public Key(MazeObject obj, Group group, int rows, int cols){
         pac = obj;
         thisgroup = group;
         this.maze = maze;
@@ -44,7 +38,6 @@ public class Key {
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");
         gc = canvas.getGraphicsContext2D();
-
 
         image = new Image("file:lib/images/key.png");
 
@@ -55,21 +48,18 @@ public class Key {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-
+    /**
+     * Paints the key viewmodel on the canvas at correct position. If there is no Key on the field, removes the viewmodel.
+     * @param obj MazeObject, that this viewmodel represents
+     */
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
-
         if(obj.getField().Key != null) {
             gc.drawImage(image, obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
         }
         else{
             thisgroup.getChildren().remove(canvas);
         }
-    }
-    public void deleteKey(){
-        timeline.stop();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
 }

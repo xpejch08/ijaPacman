@@ -50,7 +50,7 @@ public class Log {
     public void createLog() {
 
         try {
-            File logFolder = new File("log");
+            File logFolder = new File("data/log");
             if (!logFolder.exists()) {
                 logFolder.mkdir();
             }
