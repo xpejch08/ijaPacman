@@ -1,6 +1,7 @@
 package com.example.pacman.controller;
-
 /**
+ * @author Štěpán Pejchar xpejch08
+ * @author Ondřej Češka   xceska07
  * Represents a single field on the game board.
  */
 public class Field implements FieldInterface {

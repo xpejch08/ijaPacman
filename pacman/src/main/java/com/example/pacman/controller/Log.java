@@ -11,6 +11,9 @@ import java.io.IOException;
 import static com.example.pacman.controller.MazeObjectInterface.maze;
 
 /**
+ * @author Štěpán Pejchar xpejch08
+ * @author Ondřej Češka   xceska07
+ *
  * A class for creating and managing log files for a Pac-Man game.
  */
 public class Log {
