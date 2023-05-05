@@ -67,7 +67,9 @@ public class Key {
             thisgroup.getChildren().remove(canvas);
         }
     }
-    public void startKey(){
+    public void deleteKey(){
+        timeline.stop();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
 }

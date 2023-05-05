@@ -11,7 +11,7 @@ import static com.example.pacman.controller.MazeObjectInterface.maze;
 
 public class Log {
 
-    private Timeline timeline;
+    public Timeline timeline;
     private Maze m_maze;
     private int m_rows;
     private int m_cols;
@@ -40,6 +40,7 @@ public class Log {
             timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> createLog()));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
+
         }else {
             timeline = new Timeline(new KeyFrame(Duration.seconds(m_maze.speed), event -> createLog()));
             timeline.setCycleCount(Timeline.INDEFINITE);
@@ -86,6 +87,9 @@ public class Log {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void stopTime(){
+        this.timeline.stop();
     }
 
 }

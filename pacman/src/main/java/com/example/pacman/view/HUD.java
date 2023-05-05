@@ -47,7 +47,7 @@ public class HUD {
 
         steps.setText("STEPS: "+pac.steps);
         steps.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        steps.setX(120);
+        steps.setX(130);
         steps.setY(20);
         group.getChildren().add(steps);
         Timeline timelineSteps = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateSteps()));
@@ -56,7 +56,7 @@ public class HUD {
 
         diff.setText("SPEED: "+pac.maze.diff);
         diff.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        diff.setX(260);
+        diff.setX(267);
         diff.setY(20);
         group.getChildren().add(diff);
         Timeline timelineDiff = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateDiff()));

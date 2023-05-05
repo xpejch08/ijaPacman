@@ -23,9 +23,9 @@ public class Maze implements MazeInterface{
     Maze mazeTmp = this;
     Field startField;
     MazeObject PacMan;
-
+    Field endField;
     MazeObject Key;
-
+    public Log thislog;
     public PacmanView pac;
     public List <MazeObject> Ghosts = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class Maze implements MazeInterface{
     MazeObject tmp;
     public int diff;
     public double speed;
-
+    public boolean endgame = false;
     public  List<Field> Fields = new ArrayList<>();
     public  List<MazeObject> Objects = new ArrayList<>();
 
@@ -89,7 +89,18 @@ public class Maze implements MazeInterface{
                 }
             }
         }
-        return PacMan;
+        return Key;
+    }
+    public Field getEnd() {
+        for (int row = 0; row < this.getRowsG() + 2; row++) {
+            for (int col = 0; col < this.getColumnG() + 2; col++) {
+                if (this.getField(row, col) != null && this.getField(row, col).isEnd) {
+                    endField = this.getField(row, col);
+                    return endField;
+                }
+            }
+        }
+        return endField;
     }
     public void getGhosts(int NUM_ROWS, int NUM_COLS) {
         for (int row = 0; row < NUM_ROWS; row++) {
@@ -342,5 +353,11 @@ public class Maze implements MazeInterface{
         if (diff == 3){
             speed = 0.2;
         }
+    }
+    public void setLog(Log log){
+        thislog = log;
+    }
+    public void stopgame(){
+        this.endgame = true;
     }
 }

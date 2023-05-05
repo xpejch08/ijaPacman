@@ -34,6 +34,9 @@ public class MazeObject {
     public boolean move (FieldInterface.Direction dir){
         Field next = this.getField().nextField(dir);
         MazeObject tmp = next.getObject();
+        if(maze.endgame == true){
+            return false;
+        }
         if (canMove(dir)) {
             if(!next.isEmpty()) {
                 if (this.isPacman) {

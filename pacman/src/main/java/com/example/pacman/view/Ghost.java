@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.Group;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 
@@ -20,6 +21,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
+import static javafx.scene.paint.Color.BLACK;
+
 public class Ghost extends Node {
 
     private MazeObject pac = null;
@@ -27,7 +30,8 @@ public class Ghost extends Node {
 
     GraphicsContext gc;
     int CELL_SIZE = 50;
-
+    int mazeendrows;
+    int mazeendcols;
     Canvas canvas = new Canvas();
     Maze maze;
     FieldInterface.Direction dir;
@@ -41,7 +45,8 @@ public class Ghost extends Node {
         canvas.setHeight(rows * CELL_SIZE);
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");
-
+        mazeendrows = maze.getEnd().rows;
+        mazeendcols = maze.getEnd().cols;
         gc = canvas.getGraphicsContext2D();
 
         image = new Image("file:src/images/ghost.png");
@@ -89,8 +94,18 @@ public class Ghost extends Node {
         }
     }
     public void startTimeline(){
-        timeline = new Timeline(new KeyFrame(Duration.seconds(maze.speed), event -> moveGhost()));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(maze.speed), event ->{
+            moveGhost();
+            this.endGame();
+        }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+    }
+    public void endGame(){
+        if(this.pac.rows == this.mazeendrows && this.pac.cols == this.mazeendcols){
+            System.out.println("KONEC");
+            timeline.stop();
+
+        }
     }
 }

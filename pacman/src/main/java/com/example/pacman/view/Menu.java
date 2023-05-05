@@ -185,7 +185,7 @@ public class Menu {
 
         });
 //SECOND SCREEN
-        Button buttonspeed1 = new Button("Slow and steady");
+        Button buttonspeed1 = new Button("1-SLOW");
         buttonspeed1.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(1);
@@ -193,26 +193,29 @@ public class Menu {
             maze.startGhosts();
             maze.pac.startTimeline();
             Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            maze.setLog(log);
             log.startTimeline();
 
         });
-        Button buttonspeed2 = new Button("Normal");
+        Button buttonspeed2 = new Button("2-FAST");
         buttonspeed2.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(2);
             maze.startGhosts();
             maze.pac.startTimeline();
             Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            maze.setLog(log);
             log.startTimeline();
 
         });
-        Button buttonspeed3 = new Button("BRRRRR");
+        Button buttonspeed3 = new Button("3-ŠKRR");
         buttonspeed3.setOnAction(e -> {
             primaryStage.setScene(gamescreen);
             maze.setSpeed(3);
             maze.startGhosts();
             maze.pac.startTimeline();
             Log log = new Log(maze, maze.getRowsG(), maze.getColumnG());
+            maze.setLog(log);
             log.startTimeline();
 
         });

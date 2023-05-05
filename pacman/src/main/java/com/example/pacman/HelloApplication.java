@@ -65,6 +65,7 @@ public class HelloApplication extends Application {
         }
 
 
+
         Circle sceneCircle = new Circle(100, 60, 40, Color.DARKORANGE);
 
         HUD hud = new HUD(scene,groupObject,maze.getPacMan(NUM_ROWS, NUM_COLS) );
