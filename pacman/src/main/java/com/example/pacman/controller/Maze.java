@@ -179,6 +179,9 @@ public class Maze implements MazeInterface{
                                 }
                                 else{
                                     Field field = new Field(iterationRows, stringIndex + 1, mazeTmp);
+                                    MazeObject target = new MazeObject(mazeTmp, iterationRows, stringIndex+1);
+                                    target.setEnd();
+                                    field.End = target;
                                     field.isEnd = true;
                                     field.isEmpty = false;
                                     field.setPath();

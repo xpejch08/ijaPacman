@@ -28,6 +28,8 @@ public class Key {
     GraphicsContext gc;
     int CELL_SIZE = 50;
 
+    private Timeline timeline;
+
     Canvas canvas = new Canvas();
     Maze maze;
     FieldInterface.Direction dir;
@@ -47,13 +49,23 @@ public class Key {
         gc.drawImage(image,50,50);
         thisgroup.getChildren().add(canvas);
         this.paint(obj);
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.35), event -> paint(obj)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
         Image image = new Image("file:src/images/key.png");
-        gc.drawImage(image, obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        if(obj.isKey) {
+            gc.drawImage(image, obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
+        }
+        else{
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        }
+    }
+    public void startKey(){
     }
 
 }

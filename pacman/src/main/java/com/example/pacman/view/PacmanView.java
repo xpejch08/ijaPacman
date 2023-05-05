@@ -65,16 +65,12 @@ public class PacmanView extends Node {
         this.pac.canloose = true;
         if (event.getCode() == KeyCode.LEFT) {
             dir = FieldInterface.Direction.L;
-            System.out.print("LEFT");
         } else if (event.getCode() == KeyCode.RIGHT) {
             dir = FieldInterface.Direction.R;
-            System.out.print("RIGHT");
         } else if (event.getCode() == KeyCode.UP) {
             dir = FieldInterface.Direction.U;
-            System.out.print("UP");
         } else if (event.getCode() == KeyCode.DOWN) {
             dir =  FieldInterface.Direction.D;
-            System.out.print("DOWN");
         }
     }
 

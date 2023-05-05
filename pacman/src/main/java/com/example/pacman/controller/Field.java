@@ -164,6 +164,7 @@ public class Field extends Object implements FieldInterface {
         if (obj.isKey){
             Key = null;
             obj.getField().isPath = true;
+            obj.getField().isEmpty = true;
         }
         if (obj.isEnd){
             End = null;

@@ -44,12 +44,12 @@ public class MazeObject {
 
                     else if (tmp.isKey) {
                         Field fieldSwap = next;
+                        next.removeOfField(tmp);
                         this.getField().removeOfField(this);
                         this.rows = fieldSwap.rows;
                         this.cols = fieldSwap.cols;
                         this.hasKey = true;
                         System.out.println("HASKEY");
-                        next.removeOfField(tmp);
                     }
                     else if (next.isEnd) {
                         if(this.hasKey){
