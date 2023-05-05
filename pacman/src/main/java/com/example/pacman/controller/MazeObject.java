@@ -71,6 +71,9 @@ public class MazeObject {
                     }
                 }
                 if(this.isGhost){
+                    if(next.getObject() == null){
+                        return false;
+                    }
                     if(next.getObject().isPacman){
                         next.getObject().respawn();
 
