@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import com.example.pacman.controller.Maze;
 /**
+ * @author Stěpán Pejchar
  * This class is responsible for the grid in the game.
  * It is used to display the maze and the objects in it.
  * Generates a grid with the size of the maze.
@@ -14,7 +15,10 @@ public class Grid extends GridPane {
     private static final int CELL_SIZE = 50;
     public int NUM_ROWS;
     public int NUM_COLS;
-
+    /**
+     * @param maze Maze, that is used to generate the grid
+     * Generates a grid with the size of the maze.
+     */
     public Grid(Maze maze) {
         NUM_ROWS = maze.getRowsG() + 2;
         NUM_COLS = maze.getColumnG() + 2;
@@ -55,7 +59,10 @@ public class Grid extends GridPane {
             }
         }
     }
-
+    /**
+     * @param maze Maze, that is used to generate the grid
+     * Generates a grid with the size of the maze for LOGGING.
+     */
     public void GridLogging(Maze maze) {
         NUM_ROWS = maze.getRowsG() + 2;
         NUM_COLS = maze.getColumnG() + 2;
@@ -96,10 +103,11 @@ public class Grid extends GridPane {
             }
         }
     }
-
+    /** @return int, the size of the grid in pixels */
     public int getY(){
         return CELL_SIZE * NUM_ROWS + 10;
     }
+    /** @return int, the size of the grid in pixels */
     public int getX(){
         return CELL_SIZE * NUM_COLS + 10;
     }

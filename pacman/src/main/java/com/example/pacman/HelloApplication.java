@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
-
 import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 
@@ -57,7 +56,7 @@ public class HelloApplication extends Application {
         }
         maze.getKeys(NUM_ROWS, NUM_COLS);
         for (int j = 0; j < maze.keyCounter; j++) {
-            key = new Key(maze.Keys.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
+            key = new Key(maze.Keys.get(j),groupObject, NUM_ROWS, NUM_COLS);
         }
 
 

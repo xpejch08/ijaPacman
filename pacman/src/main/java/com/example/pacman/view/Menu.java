@@ -10,7 +10,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,33 +20,26 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import static javafx.scene.paint.Color.*;
-
+/**
+ * @author Ondřej Češka
+ * Represents the menu of the game.
+ * Consists of the title screen, choose map screen, choose speed screen, then shows gamescreen.
+ * */
 public class Menu {
-    private MazeObject pac;
-
     private int iterations = 1;
-    Text lives = new Text();
-    Text steps = new Text();
     Grid grid;
-    Text diff = new Text();
-    Rectangle r;
     Group menuGroup;
     Scene menuscene;
     Maze maze;
     Group groupObject;
-
+    /**
+     * @param maze The maze object, used to get the difficulty.
+     * */
     public Menu(Maze maze) {
-
         this.menuGroup = new Group();
         this.menuscene = new Scene(menuGroup, 400, 400);
         this.maze = maze;
-
-        Rectangle r = new Rectangle();
-        r.setWidth(600);
-        r.setHeight(45);
-        r.setStroke(BLACK);
-        r.setFill(Color.DARKGRAY);
-
+        //basic background
 
     }
 
