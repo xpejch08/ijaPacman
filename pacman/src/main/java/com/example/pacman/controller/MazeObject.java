@@ -54,10 +54,14 @@ public class MazeObject {
                     else if (next.isEnd) {
                         if(this.hasKey){
                             System.out.println("ENDEDGAME");
+                            next.removeOfField(tmp);
+                            this.getField().removeOfField(this);
                             this.rows = next.rows;
                             this.cols = next.cols;
                         }
                         else{
+                            next.removeOfField(tmp);
+                            this.getField().removeOfField(this);
                             this.rows = next.rows;
                             this.cols = next.cols;
                         }
