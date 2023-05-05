@@ -34,6 +34,8 @@ public class Key {
     Maze maze;
     FieldInterface.Direction dir;
 
+    Image image;
+
     public Key(MazeObject obj, Scene scene, Group group, int rows, int cols){
         pac = obj;
         thisgroup = group;
@@ -44,7 +46,7 @@ public class Key {
         gc = canvas.getGraphicsContext2D();
 
         File inputstream = new File("src/images/key.png");
-        Image image = new Image("file:src/images/key.png");
+        image = new Image("file:src/images/key.png");
 
         gc.drawImage(image,50,50);
         thisgroup.getChildren().add(canvas);
@@ -57,7 +59,6 @@ public class Key {
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
-        Image image = new Image("file:src/images/key.png");
 
         if(obj.getField().Key != null) {
             gc.drawImage(image, obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);

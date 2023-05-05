@@ -29,8 +29,12 @@ public class Maze implements MazeInterface{
     public PacmanView pac;
     public List <MazeObject> Ghosts = new ArrayList<>();
 
+    public List <MazeObject> Keys = new ArrayList<>();
+
     public List <Ghost> GhostViews = new ArrayList<>();
     public int ghostCounter = 0;
+
+    public int keyCounter = 0;
     MazeObject tmp;
     public int diff;
     public double speed;
@@ -73,14 +77,14 @@ public class Maze implements MazeInterface{
         }
         return PacMan;
     }
-    public MazeObject getKey(int NUM_ROWS, int NUM_COLS) {
+    public MazeObject getKeys(int NUM_ROWS, int NUM_COLS) {
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
                 tmp = this.getField(row, col).getObject();
                 if (tmp != null) {
                     if (tmp.isKey) {
                         Key = tmp;
-                        return Key;
+                        Keys.add(Key);
                     }
                 }
             }
@@ -172,6 +176,7 @@ public class Maze implements MazeInterface{
                                         Field field = new Field(iterationRows, stringIndex + 1, mazeTmp);
                                         MazeObject key = new MazeObject(mazeTmp, iterationRows, stringIndex + 1);
                                         key.setKey();
+                                        keyCounter++;
                                         field.setPath();
                                         field.Key = key;
                                         field.insertInMaze(iterationRows, stringIndex + 1);

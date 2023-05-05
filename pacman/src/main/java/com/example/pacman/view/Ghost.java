@@ -32,6 +32,7 @@ public class Ghost extends Node {
     Maze maze;
     FieldInterface.Direction dir;
     private Timeline timeline;
+    Image image;
 
     public Ghost(Maze maze,MazeObject obj, Scene scene, Group group, int rows, int cols) throws FileNotFoundException {
         pac = obj;
@@ -43,6 +44,7 @@ public class Ghost extends Node {
 
         gc = canvas.getGraphicsContext2D();
 
+        image = new Image("file:src/images/ghost.png");
 
         thisgroup.getChildren().add(canvas);
         this.paint(obj);
@@ -55,7 +57,6 @@ public class Ghost extends Node {
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         //gc.fillRect(obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
-        Image image = new Image("file:src/images/ghost.png");
         gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
 

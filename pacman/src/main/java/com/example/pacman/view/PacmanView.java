@@ -28,6 +28,7 @@ public class PacmanView extends Node {
 
     Canvas canvas = new Canvas();
 
+    Image image;
     FieldInterface.Direction dir;
     private Timeline timeline;
 
@@ -39,6 +40,8 @@ public class PacmanView extends Node {
         canvas.setHeight(rows * CELL_SIZE);
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");
+
+        image = new Image("file:src/images/pacman.png");
 
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.YELLOW);
@@ -53,7 +56,6 @@ public class PacmanView extends Node {
 
     public void paint(MazeObject obj) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        Image image = new Image("file:src/images/pacman.png");
         gc.drawImage(image,obj.cols * CELL_SIZE + 10, obj.rows * CELL_SIZE + 3, CELL_SIZE, CELL_SIZE);
     }
 

@@ -52,13 +52,16 @@ public class HelloApplication extends Application {
         NUM_COLS = maze.getColumnG()+2;
         MazeObject tmp = null;
 
-        key = new Key(maze.getKey(NUM_ROWS,NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
         pacman = new PacmanView(maze.getPacMan(NUM_ROWS, NUM_COLS), scene, groupObject, NUM_ROWS, NUM_COLS);
         maze.pac = pacman;
         maze.getGhosts(NUM_ROWS, NUM_COLS);
         for (int j =0; j<maze.ghostCounter; j++){
             Ghost i = new Ghost(maze,maze.Ghosts.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
             maze.GhostViews.add(i);
+        }
+        maze.getKeys(NUM_ROWS, NUM_COLS);
+        for (int j =0; j<maze.keyCounter; j++){
+            key = new Key(maze.Keys.get(j), scene, groupObject, NUM_ROWS, NUM_COLS);
         }
 
 

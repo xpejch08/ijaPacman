@@ -8,6 +8,7 @@ public class MazeObject {
     public int cols;
     public int lives = 3;
 
+
     public int steps = 0;
     public boolean isPacman = false;
     public boolean isGhost = false;
@@ -44,6 +45,7 @@ public class MazeObject {
 
                     else if (tmp != null && tmp.isKey) {
                         Field fieldSwap = next;
+                        maze.keyCounter--;
                         next.removeOfField(tmp);
                         this.getField().removeOfField(this);
                         this.rows = fieldSwap.rows;
@@ -52,7 +54,7 @@ public class MazeObject {
                         System.out.println("HASKEY");
                     }
                     else if (next.isEnd) {
-                        if(this.hasKey){
+                        if(this.hasKey && maze.keyCounter == 0){
                             System.out.println("ENDEDGAME");
                             next.removeOfField(tmp);
                             this.getField().removeOfField(this);
