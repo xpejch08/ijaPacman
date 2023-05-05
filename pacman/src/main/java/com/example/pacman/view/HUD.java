@@ -30,34 +30,34 @@ public class HUD {
 
         Rectangle r = new Rectangle();
 
-        r.setWidth(600);
-        r.setHeight(45);
+        r.setWidth(scene.getWidth());
+        r.setHeight(30);
         r.setStroke(BLACK);
         r.setFill(Color.DARKGRAY);
         group.getChildren().add(r);
 
         lives.setText("LIVES: "+pac.lives);
-        lives.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        lives.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         lives.setX(10);
-        lives.setY(30);
+        lives.setY(20);
         group.getChildren().add(lives);
         Timeline timelineLives = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateLives()));
         timelineLives.setCycleCount(Timeline.INDEFINITE);
         timelineLives.play();
 
         steps.setText("STEPS: "+pac.steps);
-        steps.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        steps.setX(170);
-        steps.setY(30);
+        steps.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        steps.setX(120);
+        steps.setY(20);
         group.getChildren().add(steps);
         Timeline timelineSteps = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateSteps()));
         timelineSteps.setCycleCount(Timeline.INDEFINITE);
         timelineSteps.play();
 
-        diff.setText("DIFFICULTY: "+pac.maze.diff);
-        diff.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        diff.setX(350);
-        diff.setY(30);
+        diff.setText("SPEED: "+pac.maze.diff);
+        diff.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        diff.setX(260);
+        diff.setY(20);
         group.getChildren().add(diff);
         Timeline timelineDiff = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> updateDiff()));
         timelineDiff.setCycleCount(Timeline.INDEFINITE);
@@ -73,7 +73,7 @@ public class HUD {
         steps.setText("STEPS: "+pac.steps);
     }
     public void updateDiff(){
-        diff.setText("DIFFICULTY: "+pac.maze.diff);
+        diff.setText("SPEED: "+pac.maze.diff);
     }
 
 

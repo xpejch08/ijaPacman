@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import static javafx.scene.paint.Color.BLACK;
+import static javafx.scene.paint.Color.*;
 
 public class Menu {
     private MazeObject pac;
@@ -70,6 +70,37 @@ public class Menu {
         Scene scene2 = new Scene(layout2, 300, 300);
         Scene logScene = new Scene(logGroup,grid.getY(), grid.getX());
 
+        //TEXTS for logging hud
+        Rectangle r = new Rectangle();
+        r.setWidth(logScene.getWidth());
+        r.setHeight(30);
+        r.setStroke(BLACK);
+        r.setFill(Color.DARKGRAY);
+        Text ghostcol = new Text();
+        ghostcol.setText("GHOST");
+        ghostcol.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        ghostcol.setFill(PURPLE);
+        ghostcol.setX(10);
+        ghostcol.setY(20);
+        Text paccol = new Text();
+        paccol.setText("PACMAN");
+        paccol.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        paccol.setFill(YELLOW);
+        paccol.setX(100);
+        paccol.setY(20);
+        Text keycol = new Text();
+        keycol.setText("KEY");
+        keycol.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        keycol.setFill(BLUE);
+        keycol.setX(220);
+        keycol.setY(20);
+        Text endcol = new Text();
+        endcol.setText("END");
+        endcol.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        endcol.setFill(RED);
+        endcol.setX(280);
+        endcol.setY(20);
+        Group loghudGroup = new Group(r,ghostcol,paccol,keycol,endcol);
         Label label0 = new Label("Welcome!\nWould you like to play");
         Label label01 = new Label("or watch a replay?");
         Label label1 = new Label("Choose the map:");
@@ -91,6 +122,7 @@ public class Menu {
             logGroup.getChildren().clear();
             logGroup.getChildren().add(gridLog);
             grid.toFront();
+            logGroup.getChildren().add(loghudGroup);
             Timeline timeline = new Timeline();
             timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> {
                 iterations++;
@@ -100,6 +132,8 @@ public class Menu {
                 logGroup.getChildren().clear();
                 logGroup.getChildren().add(iter);
                 grid.toFront();
+                logGroup.getChildren().add(loghudGroup);
+
             }));
             timeline.setCycleCount(maze.logFilesCount - 1);
             timeline.play();
@@ -116,6 +150,7 @@ public class Menu {
             logGroup.getChildren().clear();
             logGroup.getChildren().add(gridLog);
             grid.toFront();
+            logGroup.getChildren().add(loghudGroup);
             iterations = maze.logFilesCount - 1;
             Timeline timeline = new Timeline();
             timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> {
@@ -126,6 +161,7 @@ public class Menu {
                     logGroup.getChildren().clear();
                     logGroup.getChildren().add(iter);
                     grid.toFront();
+                    logGroup.getChildren().add(loghudGroup);
             }));
             timeline.setCycleCount(maze.logFilesCount - 2);
             timeline.play();
