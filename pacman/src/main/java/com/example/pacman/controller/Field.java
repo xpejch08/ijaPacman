@@ -20,7 +20,7 @@ public class Field implements FieldInterface {
     public int changedModel = 0;
 
     /**
-     * @brief Pathifield setter
+     * Pathifield setter
      * @param row
      * @param col
      */

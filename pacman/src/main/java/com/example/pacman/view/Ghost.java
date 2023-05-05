@@ -49,7 +49,7 @@ public class Ghost extends Node {
         mazeendcols = maze.getEnd().cols;
         gc = canvas.getGraphicsContext2D();
 
-        image = new Image("file:src/images/ghost.png");
+        image = new Image("file:lib/images/ghost.png");
 
         thisgroup.getChildren().add(canvas);
         this.paint(obj);

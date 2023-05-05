@@ -55,7 +55,7 @@ public class Log {
                 logFolder.mkdir();
             }
             //change the name of the file based on the logIteration like 1.txt 2.txt and so on
-            File logFile = new File("log/" + logIteration + ".txt");
+            File logFile = new File("data/log/" + logIteration + ".txt");
             if (!logFile.exists()) {
                 logFile.createNewFile();
             }

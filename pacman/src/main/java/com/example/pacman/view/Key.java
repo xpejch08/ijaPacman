@@ -45,8 +45,8 @@ public class Key {
         canvas.setStyle("-fx-border-width: 0;");
         gc = canvas.getGraphicsContext2D();
 
-        File inputstream = new File("src/images/key.png");
-        image = new Image("file:src/images/key.png");
+
+        image = new Image("file:lib/images/key.png");
 
         gc.drawImage(image,50,50);
         thisgroup.getChildren().add(canvas);

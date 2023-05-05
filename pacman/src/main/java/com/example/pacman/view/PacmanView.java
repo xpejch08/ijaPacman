@@ -51,7 +51,7 @@ public class PacmanView extends Node {
         canvas.setWidth(cols * CELL_SIZE);
         canvas.setStyle("-fx-border-width: 0;");
 
-        image = new Image("file:src/images/pacman.png");
+        image = new Image("file:lib/images/pacman.png");
 
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.YELLOW);
