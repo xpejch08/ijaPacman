@@ -37,12 +37,12 @@ public class MazeObject {
             if(!next.isEmpty()) {
                 if (this.isPacman) {
 
-                    if (tmp.isGhost) {
+                    if (tmp != null && tmp.isGhost) {
                         this.respawn();
 
                     }
 
-                    else if (tmp.isKey) {
+                    else if (tmp != null && tmp.isKey) {
                         Field fieldSwap = next;
                         next.removeOfField(tmp);
                         this.getField().removeOfField(this);
@@ -54,12 +54,6 @@ public class MazeObject {
                     else if (next.isEnd) {
                         if(this.hasKey){
                             System.out.println("ENDEDGAME");
-                            next.removeOfField(tmp);
-                            this.getField().removeOfField(this);
-                            this.rows = next.rows;
-                            this.cols = next.cols;
-                        }
-                        else{
                             next.removeOfField(tmp);
                             this.getField().removeOfField(this);
                             this.rows = next.rows;
