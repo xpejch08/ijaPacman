@@ -1,6 +1,6 @@
 package com.example.pacman.controller;
 
-public class Field extends Object implements FieldInterface {
+public class Field implements FieldInterface {
     public int rows  = 0;
     public int cols = 0;
     public MazeObject Pacman = null;
@@ -31,7 +31,7 @@ public class Field extends Object implements FieldInterface {
     }
 
     public void insertInMaze(int row, int col){
-        if(isStart == true){
+        if(isStart){
             isEmpty = false;
         }
         inMaze = true;
@@ -108,7 +108,7 @@ public class Field extends Object implements FieldInterface {
     }
 
     public boolean setPath(){
-        if (this.isPath == false){
+        if (!this.isPath){
             this.isPath = true;
             return true;
         }
@@ -117,10 +117,7 @@ public class Field extends Object implements FieldInterface {
 
     @Override
     public boolean isEmpty() {
-        if (this.Pacman == null && this.Ghost == null && this.Key == null && this.isEmpty) {
-            return true;
-        }
-        return false;
+        return this.Pacman == null && this.Ghost == null && this.Key == null && this.isEmpty;
     }
 
     @Override

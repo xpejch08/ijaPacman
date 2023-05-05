@@ -34,7 +34,7 @@ public class MazeObject {
     public boolean move (FieldInterface.Direction dir){
         Field next = this.getField().nextField(dir);
         MazeObject tmp = next.getObject();
-        if(maze.endgame == true){
+        if(maze.endgame){
             return false;
         }
         if (canMove(dir)) {
@@ -113,7 +113,7 @@ public class MazeObject {
     }
 
     public boolean setPacman() {
-        if (isPacman == false) {
+        if (!isPacman) {
             isPacman = true;
             return true;
         }else
@@ -128,49 +128,49 @@ public class MazeObject {
         return lives;
     }
     public boolean setGhost(){
-        if (isGhost == false) {
+        if (!isGhost) {
             isGhost = true;
             return true;
         }else
             return false;
     }
     public boolean setKey(){
-        if (isKey == false) {
+        if (!isKey) {
             isKey = true;
             return true;
         }else
             return false;
     }
     public boolean setEnd(){
-        if (isEnd == false) {
+        if (!isEnd) {
             isEnd = true;
             return true;
         }else
             return false;
     }
     public boolean removePacman(){
-        if (isPacman == true) {
+        if (isPacman) {
             isPacman = false;
             return true;
         }else
             return false;
     }
     public boolean removeGhost(){
-        if (isGhost == true) {
+        if (isGhost) {
             isGhost = false;
             return true;
         }else
             return false;
     }
     public boolean removeKey(){
-        if (isKey == true) {
+        if (isKey) {
             isKey = false;
             return true;
         }else
             return false;
     }
     public boolean removeEnd(){
-        if (isEnd == true) {
+        if (isEnd) {
             isEnd = false;
             return true;
         }else

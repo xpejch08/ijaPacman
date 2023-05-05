@@ -12,9 +12,9 @@ import static com.example.pacman.controller.MazeObjectInterface.maze;
 public class Log {
 
     public Timeline timeline;
-    private Maze m_maze;
-    private int m_rows;
-    private int m_cols;
+    private final Maze m_maze;
+    private final int m_rows;
+    private final int m_cols;
 
     public static int logIteration = 1;
 

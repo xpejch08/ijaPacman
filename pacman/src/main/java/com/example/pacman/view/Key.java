@@ -28,7 +28,7 @@ public class Key {
     GraphicsContext gc;
     int CELL_SIZE = 50;
 
-    private Timeline timeline;
+    private final Timeline timeline;
 
     Canvas canvas = new Canvas();
     Maze maze;

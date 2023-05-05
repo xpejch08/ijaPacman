@@ -37,7 +37,7 @@ public class PacmanView extends Node {
 
     Image image;
     FieldInterface.Direction dir;
-    private Timeline timeline;
+    private final Timeline timeline;
 
     public PacmanView(MazeObject obj, Scene scene, Group group, int rows, int cols) {
         pac = obj;
@@ -128,7 +128,7 @@ public class PacmanView extends Node {
 
             Text t2 = new Text();
             t2.setText("Restart the game to view this attempt or play again.");
-            t2.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+            t2.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
             t2.setX(thisscene.getWidth()/2-140);
             t2.setY(thisscene.getHeight()/2+50);
 

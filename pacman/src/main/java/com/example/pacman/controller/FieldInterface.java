@@ -3,24 +3,24 @@ package com.example.pacman.controller;
 public interface FieldInterface {
 
 
-    public static enum Direction {
+    enum Direction {
         L,
         U,
         R,
-        D;
+        D
     }
 
 
 
-    public MazeObject getObject();
-    public boolean setPath();
-    public boolean canMoveOnField();
-    public boolean isEmpty();
-    public boolean insertOnField(MazeObject maze);
-    public void removeAllField();
-    public void removeOfField(MazeObject obj);
-    public Field nextField(Direction dir);
-    public void setStart();
+    MazeObject getObject();
+    boolean setPath();
+    boolean canMoveOnField();
+    boolean isEmpty();
+    boolean insertOnField(MazeObject maze);
+    void removeAllField();
+    void removeOfField(MazeObject obj);
+    Field nextField(Direction dir);
+    void setStart();
 
 
 

@@ -19,7 +19,7 @@ import static javafx.scene.paint.Color.BLACK;
 
 public class HUD {
 
-    private MazeObject pac;
+    private final MazeObject pac;
     Text lives = new Text();
     Text steps = new Text();
 
